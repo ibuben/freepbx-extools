@@ -43,7 +43,7 @@ data = {
     "publisher": "eXTools",
     "license": "GPLv3+",
     "repo": "unsupported",
-    "description": "eXTools: bulk extensions, Telegram notifications, HTTP auto-provisioning, and Contact Manager phonebooks for IP phones.",
+    "description": "eXTools: массовое создание внутренников, Telegram (включая голосовую почту), HTTP-провижининг телефонов, телефонная книга, записи и очереди. / Bulk extensions, Telegram notifications, HTTP auto-provisioning, Contact Manager phonebooks, recordings, and queues.",
     "changelog": f"*{ver}* See CHANGELOG.md",
 }
 if location:

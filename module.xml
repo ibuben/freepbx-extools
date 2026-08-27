@@ -7,7 +7,7 @@
 	<license>GPLv3+</license>
 	<licenselink>https://www.gnu.org/licenses/gpl-3.0.html</licenselink>
 	<category>Applications</category>
-	<description>eXTools: bulk extensions, Telegram notifications, HTTP auto-provisioning, and Contact Manager phonebooks for IP phones.</description>
+	<description>eXTools: массовое создание внутренников, Telegram (включая голосовую почту), HTTP-провижининг телефонов, телефонная книга, записи и очереди. / Bulk extensions, Telegram notifications, HTTP auto-provisioning, Contact Manager phonebooks, recordings, and queues.</description>
 	<more-info>https://github.com/ibuben/freepbx-extools</more-info>
 	<updateurl>https://github.com/ibuben/freepbx-extools/releases/latest/download/update.json</updateurl>
 	<changelog>

@@ -1,34 +1,53 @@
 # eXTools (exunity)
 
-Open-source [FreePBX 17](https://www.freepbx.org/) module from [eXUnity LAB](https://ex.uz): bulk extensions, Telegram notify (including voicemail), HTTP phone provisioning (Yealink, Grandstream, Fanvil, MicroSIP), Contact Manager phonebooks, call history, recording options, and sticky last agent.
+Открытый модуль для [FreePBX 17](https://www.freepbx.org/) от [eXUnity LAB](https://ex.uz). Расширяет АТС без патчей Core, Queues, Ring Groups, framework и Voicemail: массовая работа с внутренними номерами, уведомления в Telegram (включая голосовую почту), HTTP-автонастройка телефонов, корпоративная телефонная книга, история звонков, записи разговоров и «липкий» последний оператор очереди.
 
-Internal module name (rawname) is `exunity`. License: [GPLv3+](LICENSE).
+Open-source [FreePBX 17](https://www.freepbx.org/) module from [eXUnity LAB](https://ex.uz): bulk extensions, Telegram notify (including voicemail), HTTP phone provisioning, Contact Manager phonebooks, call history, recording options, and sticky last agent. It does not patch Core, Queues, Ring Groups, framework, or Voicemail PHP.
 
-Source: https://github.com/ibuben/freepbx-extools
+Внутри FreePBX имя модуля (rawname) — `exunity`. Лицензия: [GPLv3+](LICENSE).  
+Репозиторий: https://github.com/ibuben/freepbx-extools
 
-## Install on FreePBX 17
+## Возможности / Features
 
-SSH to the PBX as root.
+- **Внутренние номера** — массовое создание и правка экстеншенов (диапазон, SIP-пароли, CID).
+- **Telegram** — входящий звонок и пропущенный вызов в чат; голосовая почта уходит тем же чатом (Asterisk `externnotify`, без правки модуля Voicemail).
+- **Телефоны** — HTTP-провижининг Yealink, Grandstream, Fanvil, MicroSIP; шаблоны, MAC, переменные.
+- **Телефонная книга** — группы Contact Manager и внутренние номера в справочнике аппарата.
+- **Исходящие маршруты** — массовые CallerID на Dial Patterns.
+- **Очереди и группы вызова** — dual-list выбора агентов; sticky last agent (сначала звонит тот, кто уже говорил с этим абонентом).
+- **Записи** — стерео WAV, сжатие в MP3, срок хранения аудио CDR (история звонков не удаляется).
+- **Интерфейс** — тёмная тема админки FreePBX, вкладки в eX Settings.
 
-### One line (current `main`)
+- **Extensions** — bulk create and edit (ranges, SIP secrets, CID).
+- **Telegram** — ringing and missed-call messages; voicemail to the same chat via Asterisk `externnotify` (no Voicemail module patch).
+- **Phones** — HTTP autoprovision for Yealink, Grandstream, Fanvil, MicroSIP; templates, MAC, variables.
+- **Phonebook** — Contact Manager groups plus PBX extensions on the device directory.
+- **Outbound routes** — bulk CallerID rows on dial patterns.
+- **Queues / ring groups** — dual-list agent picker; sticky last agent.
+- **Recordings** — stereo WAV, optional MP3, CDR audio retention (CDR rows are kept).
+- **UI** — dark admin theme, tabbed eX Settings.
+
+## Установка / Install
+
+SSH на АТС под root.
+
+### Одна команда (ветка `main`)
 
 ```bash
 fwconsole ma downloadinstall https://github.com/ibuben/freepbx-extools/archive/refs/heads/main.zip
 fwconsole reload
 ```
 
-Then **Admin → Module Admin**: enable **eXTools** if needed, and apply config if FreePBX asks.
+Дальше **Admin → Module Admin**: включите **eXTools**, если не включился сам, и Apply Config при запросе.
 
-### From a GitHub Release
-
-After a release tagged `v17.0.9` (or newer) exists:
+### Релиз GitHub
 
 ```bash
 fwconsole ma downloadinstall https://github.com/ibuben/freepbx-extools/releases/latest/download/exunity.tgz
 fwconsole reload
 ```
 
-The same command upgrades an existing install.
+Та же команда обновляет уже установленный модуль.
 
 ### Git clone
 
@@ -40,39 +59,35 @@ fwconsole chown
 fwconsole reload
 ```
 
-### Upload in the GUI
+### Загрузка в GUI
 
 1. `bash scripts/pack.sh` → `dist/exunity.tgz`
 2. FreePBX → **Admin → Module Admin → Upload modules**
 3. Process / enable **eXTools** → Apply Config
 
-### Unsigned warning
+### Предупреждение Unsigned
 
-Until a GPG key is signed by the FreePBX Master Key, Module Admin shows **Module is Unsigned**. That is expected for a third-party GPL module. Do not turn off `SIGNATURECHECK` on production systems.
+Пока GPG-ключ не подписан Master Key FreePBX, Module Admin показывает **Module is Unsigned**. Для стороннего GPL-модуля это нормально. Не отключайте `SIGNATURECHECK` на боевой АТС.
 
-## After install
+## После установки
 
-- **Settings → eX Settings** — theme, Telegram, phones, phonebook, recordings, queues
+- **Settings → eX Settings** — тема, Telegram, телефоны, книга, записи, очереди
 - **Applications** — Bulk Extensions, Bulk Edit, Phones, Phone Templates, Telegram Destinations
 - **Reports → eX Call History**
 
-Provisioning URL is served from `/provision/` on the PBX webroot (created on install).
+Провижининг отдаётся с `/provision/` в webroot АТС (каталог создаётся при установке).
 
-## Build a release tarball
+## Требования / Requirements
+
+- FreePBX 17, framework и Core ≥ 17.0.1
+- По желанию: Contact Manager; ffmpeg / sox / lame (голос в Telegram, стерео, MP3)
+
+## Сборка релиза / Release tarball
 
 ```bash
 bash scripts/pack.sh
 ```
 
-Publishing a GitHub Release tagged `v17.0.9` (matching `module.xml`) attaches `exunity.tgz` and `update.json` via `.github/workflows/release.yml`.
+Тег `v17.0.9` (как в `module.xml`) через GitHub Actions кладёт в Release файлы `exunity.tgz` и `update.json`.
 
-## Requirements
-
-- FreePBX 17 / framework and Core ≥ 17.0.1
-- Optional: Contact Manager, ffmpeg / sox / lame (voicemail Opus, stereo, MP3)
-
-This module does not patch Core, Queues, Ring Groups, framework, or Voicemail PHP.
-
-## Development
-
-The git repository **is** the FreePBX module (this directory). Do not wrap it in an extra parent folder, or `fwconsole ma downloadinstall` of a GitHub zip will fail.
+Корень git **и есть** модуль FreePBX. Не оборачивайте его ещё одной папкой — иначе `fwconsole ma downloadinstall` zip с GitHub не найдёт `module.xml`.
