@@ -1,44 +1,46 @@
+[English](README.md) · [Русский](README.ru.md)
+
 # eXTools (**eXtended Tools for FreePBX by eXUnity LAB**)
 
-Открытый мультифункциональный модуль для [FreePBX 17](https://www.freepbx.org/) от [eXUnity LAB](https://exunity.uz). Расширяет возможности АТС до уровня средних корпоративных решений, не затрагивая код ядра, оригинального фреймворка и других модулей. Установка данного модуля не нарушает целостность инсталляции FreePBX и не конфликтует с её последующими обновлениями.
+An open multifunctional module for [FreePBX 17](https://www.freepbx.org/) from [eXUnity LAB](https://exunity.uz). It brings a mid-size business PBX feature set without touching core code, the original framework, or other modules. Installing eXTools does not break the integrity of a FreePBX install and does not conflict with later FreePBX updates.
 
-Внутри FreePBX имя модуля (rawname) — `exunity`. Лицензия: [GPLv3+](LICENSE).  
-Репозиторий: https://github.com/ibuben/freepbx-extools
+Inside FreePBX the module rawname is `exunity`. License: [GPLv3+](LICENSE).  
+Repository: https://github.com/ibuben/freepbx-extools
 
-## Возможности
+## Features
 
-- массовые операции с экстеншанами (внутренними номерами): Создание по диапазону, массовое редактирование некоторых параметров экстеншанов (включая массовое изменение паролей)
-- **Telegram** — Оповещения о входящих вызовах через вашего Telegram бота. Можно прикреплять отдельные ChatID к каждому экстеншану.
-- **Автонастройка телефонов** — HTTP-провижининг, работает в комбинации с Option 66 (требуется настройка на вашем DHCP сервере) с поддержкой Yealink, Grandstream, Fanvil, MicroSIP* (* Требуется специальная сборка MicroSIP с поддержкой получения настроек).
-- **Телефонная книга** — группы Contact Manager и внутренние номера в справочнике аппарата.
-- **Исходящие маршруты** — Удобное массовое добавление CallerID на Dial Patterns.
-- **Очереди и группы вызова** — Удобный массовый выбора агентов;
-- Sticky last agent (Возвращает звонящего к оператору, с которым он ранее разговаривал.).
-- **Записи** — Поканальное стерео WAV (Часто используется для работы с ИИ), сжатие в MP3, автоочистка старых аудио записей по истечению срока хранения.
-- **Интерфейс** — тёмная тема панели управления бережёт глаза админа.
-- **Альтернативное отображение CDR** - Упрощённый и более приятный глазу интерфейс для просмотра и прослушки записей звонков. Поддерживает ускоренное воспроизведение. Убирает из списка хвосты звонков в очередь: Вы видите только нужную информацию.
+- Bulk extension operations: create by range, bulk-edit selected extension parameters (including bulk password changes)
+- **Telegram** — incoming-call alerts through your Telegram bot. A separate Chat ID can be attached to each extension.
+- **Phone autoprovisioning** — HTTP provisioning, used together with DHCP Option 66 (configure that on your DHCP server). Supports Yealink, Grandstream, Fanvil, and MicroSIP* (* requires a special MicroSIP build that can fetch settings).
+- **Phonebook** — Contact Manager groups and PBX extensions in the phone directory.
+- **Outbound routes** — convenient bulk CallerID rows on Dial Patterns.
+- **Queues and ring groups** — convenient bulk agent selection
+- Sticky last agent (sends the caller back to the agent they already spoke with)
+- **Recordings** — per-channel stereo WAV (often used with AI), MP3 compression, automatic cleanup of old audio after the retention period
+- **UI** — a dark admin theme that is easier on the operator’s eyes
+- **Alternative CDR view** — a simpler, cleaner interface to browse and listen to call recordings. Supports faster playback. Hides queue-call tails so you only see the information you need.
 
-## Установка
+## Install
 
-* Выполняется под root.
+* Run as root.
 
-### ветка `main`
+### `main` branch
 
 ```bash
 fwconsole ma downloadinstall https://github.com/ibuben/freepbx-extools/archive/refs/heads/main.zip
 fwconsole reload
 ```
 
-Далее, перейдите в **Admin → Module Admin**: включите **eXTools**, если не включился сам, и Apply Config при запросе.
+Then go to **Admin → Module Admin**, enable **eXTools** if it did not enable itself, and Apply Config when asked.
 
-### Релиз GitHub
+### GitHub Release
 
 ```bash
 fwconsole ma downloadinstall https://github.com/ibuben/freepbx-extools/releases/latest/download/exunity.tgz
 fwconsole reload
 ```
 
-Та же команда обновляет уже установленный модуль.
+The same command upgrades an existing install.
 
 ### Git clone
 
@@ -50,25 +52,25 @@ fwconsole chown
 fwconsole reload
 ```
 
-### Загрузка в GUI
+### Upload in the GUI
 
 1. `bash scripts/pack.sh` → `dist/exunity.tgz`
 2. FreePBX → **Admin → Module Admin → Upload modules**
 3. Process / enable **eXTools** → Apply Config
 
-### Предупреждение Unsigned
+### Unsigned warning
 
-Система будет сообщать о том, что данный модуль не подписан, это нормально. Просто игнорируйте сообщение. Не отключайте `SIGNATURECHECK` на боевой АТС.
+FreePBX will report that this module is unsigned. That is expected. Ignore the notice. Do not turn off `SIGNATURECHECK` on a production PBX.
 
-## После установки
+## After install
 
-- **Settings → eX Settings** — тема, Telegram, телефоны, книга, записи, очереди
+- **Settings → eX Settings** — theme, Telegram, phones, phonebook, recordings, queues
 - **Applications** — Bulk Extensions, Bulk Edit, Phones, Phone Templates, Telegram Destinations
 - **Reports → eX Call History**
 
-Провижининг отдаётся с `/provision/` в webroot АТС (каталог создаётся при установке).
+Provisioning is served from `/provision/` in the PBX webroot (the directory is created on install).
 
-## Требования
+## Requirements
 
-- FreePBX 17, framework и Core ≥ 17.0.1
-- По желанию: Contact Manager; ffmpeg / sox / lame (голос в Telegram, стерео, MP3)
+- FreePBX 17, framework and Core ≥ 17.0.1
+- Optional: Contact Manager; ffmpeg / sox / lame (Telegram voice, stereo, MP3)
