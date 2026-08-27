@@ -4,7 +4,7 @@ Open-source [FreePBX 17](https://www.freepbx.org/) module from [eXUnity LAB](htt
 
 Internal module name (rawname) is `exunity`. License: [GPLv3+](LICENSE).
 
-Source: https://github.com/ibuben/exunity
+Source: https://github.com/ibuben/freepbx-extools
 
 ## Install on FreePBX 17
 
@@ -13,7 +13,7 @@ SSH to the PBX as root.
 ### One line (current `main`)
 
 ```bash
-fwconsole ma downloadinstall https://github.com/ibuben/exunity/archive/refs/heads/main.zip
+fwconsole ma downloadinstall https://github.com/ibuben/freepbx-extools/archive/refs/heads/main.zip
 fwconsole reload
 ```
 
@@ -24,7 +24,7 @@ Then **Admin → Module Admin**: enable **eXTools** if needed, and apply config 
 After a release tagged `v17.0.9` (or newer) exists:
 
 ```bash
-fwconsole ma downloadinstall https://github.com/ibuben/exunity/releases/latest/download/exunity.tgz
+fwconsole ma downloadinstall https://github.com/ibuben/freepbx-extools/releases/latest/download/exunity.tgz
 fwconsole reload
 ```
 
@@ -34,7 +34,7 @@ The same command upgrades an existing install.
 
 ```bash
 cd /var/www/html/admin/modules
-git clone https://github.com/ibuben/exunity.git exunity
+git clone https://github.com/ibuben/freepbx-extools.git exunity
 fwconsole ma install exunity
 fwconsole chown
 fwconsole reload
