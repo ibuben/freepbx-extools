@@ -1,5 +1,10 @@
 # Changelog
 
+## 17.0.10
+
+- Monthly anonymous usage stats (IP, FreePBX version, Deployment ID)
+- Russian and English README
+
 ## 17.0.9
 
 - Settings page split into tabs (Admin, Telegram, Phones, Phonebook, Recordings, Queues)
