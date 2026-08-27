@@ -1,0 +1,98 @@
+<module>
+	<rawname>exunity</rawname>
+	<repo>unsupported</repo>
+	<name>eXTools</name>
+	<version>17.0.9</version>
+	<publisher>eXTools</publisher>
+	<license>GPLv3+</license>
+	<licenselink>https://www.gnu.org/licenses/gpl-3.0.html</licenselink>
+	<category>Applications</category>
+	<description>eXTools: bulk extensions, Telegram notifications, HTTP auto-provisioning, and Contact Manager phonebooks for IP phones.</description>
+	<changelog>
+		*17.0.9* Public GPL release: Settings tabs, phonebooks, voicemail to Telegram, bulk CID, recordings, sticky last agent
+	</changelog>
+	<menuitems>
+		<exunity_bulk needsenginedb="yes">eX Bulk Extensions</exunity_bulk>
+		<exunity_bulkedit needsenginedb="yes">eX Bulk Edit</exunity_bulkedit>
+		<exunity_phones needsenginedb="yes">eX Phones</exunity_phones>
+		<exunity_templates needsenginedb="yes">eX Phone Templates</exunity_templates>
+		<exunity_tgdest needsenginedb="yes">eX Telegram Destinations</exunity_tgdest>
+		<exunity_calls needsenginedb="yes" category="Reports">eX Call History</exunity_calls>
+		<exunity needsenginedb="yes" category="Settings">eX Settings</exunity>
+	</menuitems>
+	<depends>
+		<version>17.0.1</version>
+		<module>core ge 17.0.1</module>
+		<module>framework ge 17.0.1</module>
+	</depends>
+	<supported>
+		<version>17.0</version>
+	</supported>
+	<hooks>
+		<core class="Core" namespace="FreePBX\modules">
+			<method callingMethod="delUser" class="Exunity" namespace="FreePBX\modules">delUser</method>
+		</core>
+		<framework class="Less" namespace="FreePBX">
+			<method callingMethod="generateMainStyles" class="Exunity" namespace="FreePBX\modules">generateMainStyles</method>
+		</framework>
+		<queues class="Queues" namespace="FreePBX\modules">
+			<method callingMethod="hookTabs" class="Exunity" namespace="FreePBX\modules">queuesHookTabs</method>
+		</queues>
+	</hooks>
+	<database>
+		<table name="exunity_vendors">
+			<field name="id" type="integer" primarykey="true" autoincrement="true"/>
+			<field name="code" type="string" length="32"/>
+			<field name="name" type="string" length="64"/>
+			<field name="driver_class" type="string" length="128" notnull="false"/>
+		</table>
+		<table name="exunity_templates">
+			<field name="id" type="integer" primarykey="true" autoincrement="true"/>
+			<field name="name" type="string" length="64"/>
+			<field name="vendor_id" type="integer" notnull="false"/>
+			<field name="models" type="text" notnull="false"/>
+			<field name="config_body" type="text" notnull="false"/>
+			<field name="content_type" type="string" length="128" default="text/plain; charset=utf-8"/>
+			<field name="is_default" type="boolean" default="0"/>
+		</table>
+		<table name="exunity_variables">
+			<field name="id" type="integer" primarykey="true" autoincrement="true"/>
+			<field name="name" type="string" length="64"/>
+			<field name="label" type="string" length="128" default=""/>
+			<field name="description" type="text" notnull="false"/>
+			<field name="default_value" type="text" notnull="false"/>
+			<field name="is_system" type="boolean" default="0"/>
+			<field name="sort_order" type="integer" default="0"/>
+		</table>
+		<table name="exunity_phones">
+			<field name="id" type="integer" primarykey="true" autoincrement="true"/>
+			<field name="mac_address" type="string" length="17"/>
+			<field name="ip_address" type="string" length="45" default=""/>
+			<field name="model" type="string" length="64" notnull="false"/>
+			<field name="firmware" type="string" length="64" notnull="false"/>
+			<field name="vendor_id" type="integer" notnull="false"/>
+			<field name="template_id" type="integer" notnull="false"/>
+			<field name="extension" type="string" length="20" notnull="false"/>
+			<field name="last_seen" type="datetime" notnull="false"/>
+			<field name="last_provisioned" type="datetime" notnull="false"/>
+			<field name="provision_status" type="string" length="255" notnull="false"/>
+			<field name="provision_config_hash" type="string" length="64" notnull="false"/>
+			<field name="user_agent" type="string" length="255" notnull="false"/>
+			<field name="notes" type="text" notnull="false"/>
+			<key name="mac_address" type="unique">
+				<column name="mac_address"/>
+			</key>
+		</table>
+		<table name="exunity_exten">
+			<field name="extension" type="string" length="20" primarykey="true"/>
+			<field name="enabled" type="boolean" default="0"/>
+			<field name="chatid" type="string" length="64" default=""/>
+		</table>
+		<table name="exunity_tgdest">
+			<field name="id" type="integer" primarykey="true" autoincrement="true"/>
+			<field name="description" type="string" length="80"/>
+			<field name="chatid" type="string" length="64" default=""/>
+			<field name="dest" type="string" length="255" default=""/>
+		</table>
+	</database>
+</module>

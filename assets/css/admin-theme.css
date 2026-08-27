@@ -1,0 +1,1307 @@
+html.exunity-theme {
+	color-scheme: dark;
+	--ex-bg: #101318;
+	--ex-elev: #181c23;
+	--ex-elev-2: #222733;
+	--ex-text: #e6edf5;
+	--ex-muted: #9aa8b6;
+	--ex-border: #2b3340;
+	--ex-accent: #2dd4bf;
+	--ex-accent-dim: #115e59;
+	--ex-danger: #ef4444;
+	--ex-input: #141922;
+}
+
+html.exunity-theme,
+html.exunity-theme body {
+	background: var(--ex-bg) !important;
+	color: var(--ex-text) !important;
+}
+
+html.exunity-theme a,
+html.exunity-theme a:visited {
+	color: var(--ex-text);
+}
+html.exunity-theme a:hover {
+	color: var(--ex-accent);
+}
+
+html.exunity-theme h1,
+html.exunity-theme h2,
+html.exunity-theme h3,
+html.exunity-theme h4,
+html.exunity-theme h5,
+html.exunity-theme label,
+html.exunity-theme .control-label {
+	color: var(--ex-text);
+}
+
+html.exunity-theme .help-block,
+html.exunity-theme .fpbx-help-block,
+html.exunity-theme .text-muted,
+html.exunity-theme #footer,
+html.exunity-theme #footer_content,
+html.exunity-theme #footer_content a {
+	color: var(--ex-muted) !important;
+}
+
+html.exunity-theme #page_body,
+html.exunity-theme #footer {
+	background: transparent !important;
+}
+
+html.exunity-theme .navbar-brand {
+	padding-left: 10px !important;
+}
+html.exunity-theme .navbar-brand img,
+html.exunity-theme #MENU_BRAND_IMAGE_TANGO_LEFT {
+	height: 22px !important;
+	width: auto !important;
+	max-height: 22px;
+}
+
+html.exunity-theme .freepbx-navbar .navbar {
+	background: var(--ex-elev) !important;
+	border-color: var(--ex-border) !important;
+	box-shadow:
+		0 0 0 1px rgba(255, 255, 255, 0.03) inset,
+		0 8px 24px rgba(0, 0, 0, 0.28);
+	backdrop-filter: blur(18px) saturate(1.1);
+	-webkit-backdrop-filter: blur(18px) saturate(1.1);
+}
+html.exunity-theme .freepbx-navbar .navbar-nav .nav-link,
+html.exunity-theme .freepbx-navbar .navbar-nav > li > a,
+html.exunity-theme .freepbx-navbar .nav-item > a {
+	position: relative;
+	color: var(--ex-text) !important;
+	background: transparent !important;
+	background-image: none !important;
+	border-color: transparent !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	text-decoration: none !important;
+	transition: color 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+	overflow: visible;
+	z-index: 1;
+}
+html.exunity-theme .freepbx-navbar .navbar-nav > li > a::before,
+html.exunity-theme .freepbx-navbar .navbar-nav .nav-link::before {
+	content: "";
+	position: absolute;
+	left: 50%;
+	bottom: -6px;
+	width: 160%;
+	height: 130%;
+	transform: translateX(-50%);
+	background: radial-gradient(
+		ellipse 42% 55% at 50% 100%,
+		rgba(45, 212, 191, 0.7) 0%,
+		rgba(45, 212, 191, 0.28) 32%,
+		rgba(45, 212, 191, 0.08) 55%,
+		transparent 72%
+	);
+	filter: blur(10px);
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+	z-index: 0;
+}
+html.exunity-theme .freepbx-navbar .navbar-nav > li > a::after,
+html.exunity-theme .freepbx-navbar .navbar-nav .nav-link::after {
+	content: "";
+	position: absolute;
+	left: 0.7rem;
+	right: 0.7rem;
+	bottom: 0;
+	height: 3px;
+	background: var(--ex-accent);
+	border-radius: 2px 2px 0 0;
+	box-shadow:
+		0 0 8px rgba(45, 212, 191, 0.95),
+		0 -4px 16px rgba(45, 212, 191, 0.55),
+		0 -10px 28px rgba(45, 212, 191, 0.28);
+	transform: scaleX(0);
+	transform-origin: center;
+	transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+	pointer-events: none;
+	display: block !important;
+	border: 0 !important;
+	margin: 0 !important;
+	z-index: 1;
+}
+html.exunity-theme .freepbx-navbar .navbar-nav .nav-link:hover,
+html.exunity-theme .freepbx-navbar .navbar-nav > li:hover > a,
+html.exunity-theme .freepbx-navbar .nav-item:hover > a,
+html.exunity-theme .freepbx-navbar .navbar-nav > li.open > a,
+html.exunity-theme .freepbx-navbar .navbar-nav > li.show > a,
+html.exunity-theme .freepbx-navbar .navbar-nav > li > a[aria-expanded="true"] {
+	background: transparent !important;
+	background-image: none !important;
+	color: #fff !important;
+	border-color: transparent !important;
+	box-shadow: none !important;
+}
+html.exunity-theme .freepbx-navbar .navbar-nav > li:hover > a::before,
+html.exunity-theme .freepbx-navbar .navbar-nav > li.open > a::before,
+html.exunity-theme .freepbx-navbar .navbar-nav > li.show > a::before,
+html.exunity-theme .freepbx-navbar .navbar-nav > li > a[aria-expanded="true"]::before,
+html.exunity-theme .freepbx-navbar .navbar-nav .nav-link:hover::before {
+	opacity: 1;
+}
+html.exunity-theme .freepbx-navbar .navbar-nav > li:hover > a::after,
+html.exunity-theme .freepbx-navbar .navbar-nav > li.open > a::after,
+html.exunity-theme .freepbx-navbar .navbar-nav > li.show > a::after,
+html.exunity-theme .freepbx-navbar .navbar-nav > li > a[aria-expanded="true"]::after,
+html.exunity-theme .freepbx-navbar .navbar-nav .nav-link:hover::after {
+	transform: scaleX(1);
+}
+html.exunity-theme .freepbx-navbar .stuck-right .nav-button,
+html.exunity-theme .freepbx-navbar .stuck-right .btn {
+	background: var(--ex-elev-2) !important;
+	color: var(--ex-text) !important;
+	border-color: var(--ex-border) !important;
+	box-shadow: none;
+}
+html.exunity-theme .freepbx-navbar .stuck-right .nav-button:hover,
+html.exunity-theme .freepbx-navbar .stuck-right .btn:hover {
+	background: #2c3340 !important;
+	border-color: var(--ex-accent) !important;
+	color: #fff !important;
+	box-shadow: 0 0 12px rgba(45, 212, 191, 0.28);
+}
+html.exunity-theme .freepbx-navbar .stuck-right > li > a.reload-btn,
+html.exunity-theme .freepbx-navbar .stuck-right > li > a.reload-btn:hover {
+	background: var(--ex-danger) !important;
+	color: #fff !important;
+	border: none !important;
+	box-shadow: none !important;
+}
+html.exunity-theme .freepbx-navbar .dropdown-menu {
+	background: var(--ex-elev) !important;
+	border-color: var(--ex-border) !important;
+	box-shadow:
+		0 0 0 1px rgba(255, 255, 255, 0.03) inset,
+		0 12px 32px rgba(0, 0, 0, 0.4);
+}
+html.exunity-theme .freepbx-navbar .dropdown-menu > li > a,
+html.exunity-theme .freepbx-navbar .dropdown-menu .dropdown-item {
+	color: var(--ex-text) !important;
+	background: transparent !important;
+	box-shadow: none;
+}
+html.exunity-theme .freepbx-navbar .dropdown-menu > li > a:hover,
+html.exunity-theme .freepbx-navbar .dropdown-menu .dropdown-item:hover,
+html.exunity-theme .freepbx-navbar .dropdown-menu > .active > a,
+html.exunity-theme .freepbx-navbar .dropdown-menu .dropdown-item.active {
+	background: var(--ex-elev-2) !important;
+	color: var(--ex-accent) !important;
+	box-shadow: inset 3px 0 0 var(--ex-accent);
+}
+html.exunity-theme .navbar-toggler,
+html.exunity-theme .navbar-toggler .icon-bar {
+	background-color: var(--ex-text);
+	border-color: var(--ex-border);
+}
+
+html.exunity-theme .dropdown-menu,
+html.exunity-theme .bootstrap-select .dropdown-menu,
+html.exunity-theme .chosen-container .chosen-drop {
+	background: var(--ex-elev) !important;
+	border-color: var(--ex-border) !important;
+	color: var(--ex-text) !important;
+}
+html.exunity-theme .dropdown-menu > li,
+html.exunity-theme .dropdown-menu .dropdown-item,
+html.exunity-theme .dropdown-menu > li > a,
+html.exunity-theme .dropdown-menu > li > a:visited,
+html.exunity-theme .dropdown-menu > li > a strong,
+html.exunity-theme .dropdown-menu .dropdown-item strong {
+	color: var(--ex-text) !important;
+	background: transparent !important;
+	background-image: none !important;
+}
+html.exunity-theme .dropdown-menu > li > a,
+html.exunity-theme .dropdown-menu .dropdown-item {
+	display: block;
+	width: 100%;
+}
+html.exunity-theme .dropdown-menu > li:hover,
+html.exunity-theme .dropdown-menu > li:focus,
+html.exunity-theme .dropdown-menu > li.active,
+html.exunity-theme .dropdown-menu > li:hover > a,
+html.exunity-theme .dropdown-menu > li:hover > a strong,
+html.exunity-theme .dropdown-menu > li > a:hover,
+html.exunity-theme .dropdown-menu > li > a:focus,
+html.exunity-theme .dropdown-menu > li > a:active,
+html.exunity-theme .dropdown-menu > li > a:hover strong,
+html.exunity-theme .dropdown-menu > li > a:focus strong,
+html.exunity-theme .dropdown-menu .dropdown-item:hover,
+html.exunity-theme .dropdown-menu .dropdown-item:focus,
+html.exunity-theme .dropdown-menu .dropdown-item:active,
+html.exunity-theme .dropdown-menu .dropdown-item.active,
+html.exunity-theme .dropdown-menu .dropdown-item:hover strong,
+html.exunity-theme .dropdown-menu .dropdown-item:focus strong,
+html.exunity-theme .dropdown-menu > .active > a,
+html.exunity-theme .dropdown-menu > .active > a:hover,
+html.exunity-theme .dropdown-menu > .active > a:focus {
+	background: var(--ex-elev-2) !important;
+	background-image: none !important;
+	color: var(--ex-accent) !important;
+}
+html.exunity-theme .dropdown-menu .divider,
+html.exunity-theme .dropdown-divider {
+	background: var(--ex-border) !important;
+	border-color: var(--ex-border) !important;
+}
+
+html.exunity-theme .fpbx-container .display,
+html.exunity-theme .fpbx-container .display.full-border,
+html.exunity-theme .fpbx-container .display .section,
+html.exunity-theme .well,
+html.exunity-theme .panel,
+html.exunity-theme .panel-body,
+html.exunity-theme .panel-default > .panel-heading,
+html.exunity-theme .modal-content,
+html.exunity-theme .popover,
+html.exunity-theme .ui-dialog,
+html.exunity-theme .ui-widget-content,
+html.exunity-theme .ui-widget-header {
+	background: var(--ex-elev) !important;
+	border-color: var(--ex-border) !important;
+	color: var(--ex-text) !important;
+}
+html.exunity-theme .label,
+html.exunity-theme .label-default,
+html.exunity-theme .label-primary,
+html.exunity-theme .label-info,
+html.exunity-theme .label-success,
+html.exunity-theme .label-warning,
+html.exunity-theme .label-danger,
+html.exunity-theme .badge,
+html.exunity-theme .badge-info,
+html.exunity-theme .ui-sortable .label,
+html.exunity-theme .ui-sortable .label-info,
+html.exunity-theme #selected li,
+html.exunity-theme #unselected li {
+	background: var(--ex-elev-2) !important;
+	background-image: none !important;
+	color: var(--ex-text) !important;
+	border: 1px solid var(--ex-border) !important;
+}
+html.exunity-theme .ui-sortable .label-info,
+html.exunity-theme #selected li.label-info,
+html.exunity-theme #unselected li.label-info {
+	background: var(--ex-accent-dim) !important;
+	border-color: rgba(45, 212, 191, 0.45) !important;
+	color: #e6edf5 !important;
+}
+html.exunity-theme #selected,
+html.exunity-theme #unselected {
+	background: var(--ex-input) !important;
+	border-color: var(--ex-border) !important;
+}
+html.exunity-theme .element-container {
+	border-color: var(--ex-border);
+}
+
+html.exunity-theme .form-control,
+html.exunity-theme input[type="text"],
+html.exunity-theme input[type="password"],
+html.exunity-theme input[type="number"],
+html.exunity-theme input[type="email"],
+html.exunity-theme input[type="search"],
+html.exunity-theme select,
+html.exunity-theme textarea,
+html.exunity-theme .bootstrap-select > .dropdown-toggle,
+html.exunity-theme .chosen-container-single .chosen-single,
+html.exunity-theme .input-group-addon,
+html.exunity-theme .input-group-text {
+	background: var(--ex-input) !important;
+	color: var(--ex-text) !important;
+	border-color: var(--ex-border) !important;
+	box-shadow: none !important;
+}
+html.exunity-theme .form-control:focus,
+html.exunity-theme input:focus,
+html.exunity-theme select:focus,
+html.exunity-theme textarea:focus {
+	border-color: var(--ex-accent) !important;
+	box-shadow: 0 0 0 2px rgba(45, 212, 191, 0.18) !important;
+}
+html.exunity-theme .form-control::placeholder,
+html.exunity-theme input::placeholder,
+html.exunity-theme textarea::placeholder {
+	color: var(--ex-muted) !important;
+}
+html.exunity-theme option,
+html.exunity-theme optgroup {
+	background: var(--ex-elev);
+	color: var(--ex-text);
+}
+
+html.exunity-theme .btn,
+html.exunity-theme .btn-default,
+html.exunity-theme .btn-secondary {
+	background: var(--ex-elev-2) !important;
+	color: var(--ex-text) !important;
+	border-color: var(--ex-border) !important;
+}
+html.exunity-theme .btn:hover,
+html.exunity-theme .btn-default:hover {
+	background: #2c3340 !important;
+	color: #fff !important;
+}
+html.exunity-theme .btn-primary,
+html.exunity-theme #action-bar #submit,
+html.exunity-theme .fpbx-submit #submit {
+	background: var(--ex-accent-dim) !important;
+	border-color: var(--ex-accent) !important;
+	color: #ecfdf8 !important;
+}
+html.exunity-theme .btn-danger,
+html.exunity-theme #action-bar #delete {
+	background: #7f1d1d !important;
+	border-color: var(--ex-danger) !important;
+	color: #fff !important;
+}
+
+html.exunity-theme .nav-tabs,
+html.exunity-theme .nav.nav-tabs {
+	border-bottom-color: var(--ex-border) !important;
+}
+html.exunity-theme .nav.nav-tabs > li > a,
+html.exunity-theme .nav.nav-tabs > li > a:visited,
+html.exunity-theme .nav-tabs > li > a,
+html.exunity-theme .nav-tabs .nav-link {
+	background: var(--ex-elev-2) !important;
+	background-image: none !important;
+	color: var(--ex-muted) !important;
+	border: 1px solid var(--ex-border) !important;
+	border-bottom-color: var(--ex-border) !important;
+}
+html.exunity-theme .nav.nav-tabs > li > a:hover,
+html.exunity-theme .nav-tabs > li > a:hover,
+html.exunity-theme .nav-tabs .nav-link:hover {
+	background: #2c3340 !important;
+	color: var(--ex-text) !important;
+	border-color: var(--ex-border) !important;
+}
+html.exunity-theme .nav.nav-tabs > li > a.active,
+html.exunity-theme .nav.nav-tabs > li > a.active:hover,
+html.exunity-theme .nav.nav-tabs > li > a.active:focus,
+html.exunity-theme .nav.nav-tabs > li.active > a,
+html.exunity-theme .nav.nav-tabs > li.active > a:hover,
+html.exunity-theme .nav-tabs .nav-link.active,
+html.exunity-theme .nav-tabs .nav-item.show .nav-link {
+	background: var(--ex-elev) !important;
+	background-image: none !important;
+	color: var(--ex-accent) !important;
+	border-color: var(--ex-border) !important;
+	border-bottom-color: var(--ex-elev) !important;
+}
+html.exunity-theme .nav-pills > li.active > a,
+html.exunity-theme .nav-pills .nav-link.active {
+	background: var(--ex-accent-dim) !important;
+	color: #fff !important;
+}
+html.exunity-theme .nav > li > a:hover,
+html.exunity-theme .nav > li > a:focus {
+	background-color: var(--ex-elev-2) !important;
+	color: var(--ex-text) !important;
+}
+html.exunity-theme .nav-container .scroller,
+html.exunity-theme .nav-container .scroller-left,
+html.exunity-theme .nav-container .scroller-right,
+html.exunity-theme .nav-container .wrapper {
+	background: var(--ex-elev) !important;
+	background-color: var(--ex-elev) !important;
+	border-bottom-color: var(--ex-border) !important;
+}
+html.exunity-theme .nav-container .scroller i {
+	color: var(--ex-muted) !important;
+}
+html.exunity-theme #floating-nav-bar {
+	background-color: var(--ex-elev) !important;
+	border-color: var(--ex-border) !important;
+}
+
+html.exunity-theme .table,
+html.exunity-theme .table > thead > tr > th,
+html.exunity-theme .table > tbody > tr > td,
+html.exunity-theme .table > tbody > tr > th,
+html.exunity-theme .bootstrap-table .table,
+html.exunity-theme .fixed-table-container,
+html.exunity-theme .fixed-table-header,
+html.exunity-theme .fixed-table-body,
+html.exunity-theme .fixed-table-toolbar {
+	background: var(--ex-elev) !important;
+	color: var(--ex-text) !important;
+	border-color: var(--ex-border) !important;
+}
+html.exunity-theme .table > thead > tr > th {
+	background: var(--ex-elev-2) !important;
+	color: var(--ex-muted) !important;
+}
+html.exunity-theme .table-striped > tbody > tr:nth-child(odd) > td,
+html.exunity-theme .table-striped > tbody > tr:nth-of-type(odd) {
+	background: #1c212b !important;
+}
+html.exunity-theme .table-striped > tbody > tr:nth-child(even) > td,
+html.exunity-theme .table-striped > tbody > tr:nth-of-type(even),
+html.exunity-theme .table-hover > tbody > tr:hover > td,
+html.exunity-theme .table-hover > tbody > tr:hover {
+	background: #232a36 !important;
+}
+
+html.exunity-theme #module-listing-container,
+html.exunity-theme #modulelist,
+html.exunity-theme #modulelist .category,
+html.exunity-theme #modulelist .fullmodule,
+html.exunity-theme #modulelist-header {
+	background: transparent !important;
+	color: var(--ex-text) !important;
+}
+html.exunity-theme #modulelist .category h3,
+html.exunity-theme #modulelist-header span {
+	color: var(--ex-text) !important;
+}
+html.exunity-theme #modulelist .moduleheader.disabled {
+	background-color: var(--ex-elev-2) !important;
+	color: var(--ex-muted) !important;
+}
+html.exunity-theme #modulelist table,
+html.exunity-theme table.modulelist {
+	background: var(--ex-elev) !important;
+	border-color: var(--ex-border) !important;
+	color: var(--ex-text) !important;
+}
+html.exunity-theme .moduleinfopane,
+html.exunity-theme #modulelist div.moduleinfopane,
+html.exunity-theme .moduleinfopane .tab-content,
+html.exunity-theme .moduleinfopane .tab-pane,
+html.exunity-theme .moduleinfopane table,
+html.exunity-theme .moduleinfopane tr,
+html.exunity-theme .moduleinfopane td,
+html.exunity-theme .moduleinfopane th,
+html.exunity-theme table.modulequickinfo,
+html.exunity-theme table.modulequickinfo tr,
+html.exunity-theme table.modulequickinfo td {
+	background: var(--ex-elev) !important;
+	background-color: var(--ex-elev) !important;
+	color: var(--ex-text) !important;
+	border-color: var(--ex-border) !important;
+}
+html.exunity-theme .moduleinfopane pre,
+html.exunity-theme .moduleinfopane .limitheight {
+	background: var(--ex-input) !important;
+	color: var(--ex-text) !important;
+	border-color: var(--ex-border) !important;
+}
+html.exunity-theme .screendoor .message {
+	background-color: var(--ex-elev) !important;
+	border-color: var(--ex-border) !important;
+	color: var(--ex-text) !important;
+}
+html.exunity-theme #moduleprogress {
+	background: var(--ex-elev) !important;
+	color: var(--ex-text) !important;
+}
+
+html.exunity-theme .bootstrap-table td:last-child i.fa {
+	color: var(--ex-muted) !important;
+}
+html.exunity-theme .bootstrap-table td:last-child a:hover i.fa {
+	color: var(--ex-accent) !important;
+}
+html.exunity-theme .bootstrap-table .search input,
+html.exunity-theme .fixed-table-toolbar .form-control {
+	background: var(--ex-input) !important;
+	color: var(--ex-text) !important;
+	border-color: var(--ex-border) !important;
+}
+html.exunity-theme .fixed-table-toolbar .btn,
+html.exunity-theme .fixed-table-toolbar .btn-default,
+html.exunity-theme .fixed-table-toolbar .btn-primary {
+	background: var(--ex-elev-2) !important;
+	color: var(--ex-text) !important;
+	border-color: var(--ex-border) !important;
+}
+html.exunity-theme .fixed-table-toolbar .btn:hover,
+html.exunity-theme .fixed-table-toolbar .btn-primary:hover {
+	background: #2c3340 !important;
+	color: #fff !important;
+}
+html.exunity-theme .fixed-table-toolbar .btn-danger {
+	background: #3f1d1d !important;
+	color: #fca5a5 !important;
+	border-color: #7f1d1d !important;
+}
+
+html.exunity-theme input[type="checkbox"],
+html.exunity-theme input[type="radio"] {
+	accent-color: var(--ex-accent);
+	width: 14px;
+	height: 14px;
+}
+
+html.exunity-theme .alert-info {
+	background: #132e2c !important;
+	color: #99f6e4 !important;
+	border-color: #134e4a !important;
+}
+html.exunity-theme .alert-success {
+	background: #14532d !important;
+	color: #bbf7d0 !important;
+	border-color: #166534 !important;
+}
+html.exunity-theme .alert-warning {
+	background: #713f12 !important;
+	color: #fde68a !important;
+	border-color: #a16207 !important;
+}
+html.exunity-theme .alert-danger {
+	background: #7f1d1d !important;
+	color: #fecaca !important;
+	border-color: #991b1b !important;
+}
+
+html.exunity-theme #action-bar {
+	background: var(--ex-elev) !important;
+	border-top: 1px solid var(--ex-border) !important;
+	color: var(--ex-text) !important;
+}
+html.exunity-theme #fpbxsearch,
+html.exunity-theme #fpbxsearch input {
+	background: var(--ex-elev) !important;
+	color: var(--ex-text) !important;
+	border-color: var(--ex-border) !important;
+}
+
+html.exunity-theme hr {
+	border-color: var(--ex-border) !important;
+	background: var(--ex-border) !important;
+}
+
+html.exunity-theme .pagination > li > a,
+html.exunity-theme .pagination > li > span,
+html.exunity-theme .page-link {
+	background: var(--ex-elev-2) !important;
+	color: var(--ex-text) !important;
+	border-color: var(--ex-border) !important;
+}
+html.exunity-theme .pagination > .active > a,
+html.exunity-theme .page-item.active .page-link {
+	background: var(--ex-accent-dim) !important;
+	border-color: var(--ex-accent) !important;
+	color: #fff !important;
+}
+
+html.exunity-theme .exunity-picker-col {
+	background: var(--ex-elev) !important;
+	border-color: var(--ex-border) !important;
+}
+html.exunity-theme .exunity-picker-head {
+	background: var(--ex-elev-2) !important;
+	border-bottom-color: var(--ex-border) !important;
+	color: var(--ex-text);
+}
+html.exunity-theme .exunity-picker-search input {
+	background: var(--ex-input) !important;
+	color: var(--ex-text) !important;
+	border-color: var(--ex-border) !important;
+}
+html.exunity-theme .exunity-picker-item:hover {
+	background: #232a36 !important;
+}
+html.exunity-theme .exunity-picker-item.is-checked {
+	background: #134e4a !important;
+}
+
+html.exunity-theme ::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+}
+html.exunity-theme ::-webkit-scrollbar-thumb {
+	background: #3b4453;
+	border-radius: 8px;
+}
+html.exunity-theme ::-webkit-scrollbar-track {
+	background: var(--ex-bg);
+}
+
+html.exunity-theme .list-group-item,
+html.exunity-theme .tt-menu,
+html.exunity-theme .tt-suggestion,
+html.exunity-theme pre,
+html.exunity-theme code,
+html.exunity-theme .form-control-static {
+	background: var(--ex-elev) !important;
+	color: var(--ex-text) !important;
+	border-color: var(--ex-border) !important;
+}
+html.exunity-theme .close {
+	color: var(--ex-text) !important;
+	opacity: 0.8;
+}
+html.exunity-theme .guielToggle,
+html.exunity-theme .section .title {
+	color: var(--ex-text);
+}
+
+html.exunity-theme .displaybox,
+html.exunity-theme .displaybox .content,
+html.exunity-theme .displaybox .box,
+html.exunity-theme .displaybox .title-bar,
+html.exunity-theme #welcomepage,
+html.exunity-theme #welcomepage .jumbotron {
+	background: var(--ex-elev) !important;
+	background-color: var(--ex-elev) !important;
+	border-color: var(--ex-border) !important;
+	color: var(--ex-text) !important;
+	box-shadow: none !important;
+}
+html.exunity-theme .displaybox .title-bar {
+	background: var(--ex-elev-2) !important;
+	color: var(--ex-muted) !important;
+	border-bottom-color: var(--ex-border) !important;
+}
+html.exunity-theme .displaybox .content a:not(.graph-button) {
+	color: var(--ex-accent) !important;
+}
+html.exunity-theme .displaybox .content .text-success,
+html.exunity-theme .displaybox .content .fa-check.text-success {
+	color: #22c55e !important;
+}
+html.exunity-theme .displaybox .content .text-danger,
+html.exunity-theme .displaybox .content .fa-times.text-danger,
+html.exunity-theme .displaybox .content .fa-fire.text-danger {
+	color: #ef4444 !important;
+}
+html.exunity-theme .displaybox .content .text-warning,
+html.exunity-theme .displaybox .content .fa-exclamation-triangle.text-warning {
+	color: #f59e0b !important;
+}
+html.exunity-theme .displaybox .content .text-info {
+	color: #38bdf8 !important;
+}
+html.exunity-theme #page_Main_Overview_overview .summary,
+html.exunity-theme .extended_text {
+	border-color: var(--ex-border) !important;
+	background: var(--ex-input) !important;
+	color: var(--ex-text) !important;
+}
+html.exunity-theme #page_Main_Overview_overview .status-element:hover {
+	background-color: var(--ex-elev-2) !important;
+}
+html.exunity-theme .sysalerts,
+html.exunity-theme #notifications_group .panel,
+html.exunity-theme #notifications_group .panel-heading,
+html.exunity-theme #notifications_group .panel-body {
+	background: var(--ex-elev) !important;
+	color: var(--ex-text) !important;
+	border-color: var(--ex-border) !important;
+}
+html.exunity-theme #notifications_group .panel-heading .actions i.fa:hover {
+	color: var(--ex-accent) !important;
+}
+html.exunity-theme .canvasjs-chart-container,
+html.exunity-theme .canvasjs-chart-canvas {
+	background: transparent !important;
+}
+html.exunity-theme #page_Main_Statistics_statistics .col-sm-2,
+html.exunity-theme #netmon .col-sm-2,
+html.exunity-theme .displaybox .btn-group-vertical {
+	position: relative;
+	z-index: 5;
+}
+html.exunity-theme .displaybox .dropdown-menu {
+	z-index: 20;
+	min-width: 100%;
+}
+html.exunity-theme .displaybox .dropdown-menu > li,
+html.exunity-theme .displaybox .dropdown-menu > li > a {
+	display: block;
+	float: none;
+	width: 100%;
+}
+html.exunity-theme .displaybox .dropdown-menu > li > a,
+html.exunity-theme .displaybox .graph-button {
+	color: var(--ex-text) !important;
+	background: transparent !important;
+	padding: 6px 14px;
+	white-space: nowrap;
+	text-decoration: none;
+}
+html.exunity-theme .displaybox .dropdown-menu > li > a:hover,
+html.exunity-theme .displaybox .graph-button:hover {
+	background: var(--ex-elev-2) !important;
+	color: var(--ex-accent) !important;
+}
+html.exunity-theme .displaybox .btn-default {
+	background: var(--ex-elev-2) !important;
+	color: var(--ex-text) !important;
+	border-color: var(--ex-border) !important;
+}
+html.exunity-theme .displaybox .btn-default:hover,
+html.exunity-theme .displaybox .btn-default:focus,
+html.exunity-theme .displaybox .open > .btn-default,
+html.exunity-theme .displaybox .show > .btn-default {
+	background: var(--ex-input) !important;
+	color: var(--ex-accent) !important;
+	border-color: var(--ex-border) !important;
+}
+html.exunity-theme .disk__usage__container .row .col-xs-6 {
+	border-color: var(--ex-border) !important;
+	background: var(--ex-input) !important;
+}
+html.exunity-theme .disk__noti {
+	border-color: var(--ex-border) !important;
+	background: var(--ex-elev-2) !important;
+	color: var(--ex-text) !important;
+}
+
+html.exunity-theme .chosen-container-single .chosen-single,
+html.exunity-theme .chosen-container-multi .chosen-choices,
+html.exunity-theme .chosen-container .chosen-drop,
+html.exunity-theme .chosen-container .chosen-results,
+html.exunity-theme .chosen-container .chosen-search input[type="text"] {
+	background: var(--ex-input) !important;
+	background-image: none !important;
+	background-color: var(--ex-input) !important;
+	color: var(--ex-text) !important;
+	border-color: var(--ex-border) !important;
+	box-shadow: none !important;
+}
+html.exunity-theme .chosen-container-multi .chosen-choices li.search-field input[type="text"] {
+	background: transparent !important;
+	color: var(--ex-muted) !important;
+}
+html.exunity-theme .chosen-container-multi .chosen-choices li.search-choice {
+	background: var(--ex-elev-2) !important;
+	background-image: none !important;
+	color: var(--ex-text) !important;
+	border-color: var(--ex-border) !important;
+	box-shadow: none !important;
+}
+html.exunity-theme .chosen-container .chosen-results li {
+	color: var(--ex-text);
+}
+html.exunity-theme .chosen-container .chosen-results li.highlighted,
+html.exunity-theme .chosen-container .chosen-results li.result-selected {
+	background: var(--ex-accent-dim) !important;
+	background-image: none !important;
+	color: #fff !important;
+}
+html.exunity-theme .chosen-container .chosen-results li.no-results {
+	background: var(--ex-elev-2) !important;
+	color: var(--ex-muted) !important;
+}
+html.exunity-theme .chosen-container-active .chosen-single,
+html.exunity-theme .chosen-container-active .chosen-choices {
+	border-color: var(--ex-accent) !important;
+	box-shadow: 0 0 0 2px rgba(45, 212, 191, 0.18) !important;
+}
+
+html.exunity-theme .selectize-input,
+html.exunity-theme .selectize-dropdown,
+html.exunity-theme .selectize-dropdown-content,
+html.exunity-theme .selectize-control.single .selectize-input {
+	background: var(--ex-input) !important;
+	color: var(--ex-text) !important;
+	border-color: var(--ex-border) !important;
+	box-shadow: none !important;
+}
+html.exunity-theme .selectize-input input {
+	color: var(--ex-text) !important;
+}
+html.exunity-theme .selectize-input > div,
+html.exunity-theme .selectize-input > .item {
+	background: var(--ex-elev-2) !important;
+	color: var(--ex-text) !important;
+	border-color: var(--ex-border) !important;
+}
+html.exunity-theme .selectize-dropdown .active {
+	background: var(--ex-accent-dim) !important;
+	color: #fff !important;
+}
+
+html.exunity-theme .bootstrap-select .dropdown-toggle,
+html.exunity-theme .bootstrap-select .filter-option,
+html.exunity-theme .bootstrap-select .dropdown-menu,
+html.exunity-theme .bootstrap-select .bs-searchbox input {
+	background: var(--ex-input) !important;
+	color: var(--ex-text) !important;
+	border-color: var(--ex-border) !important;
+}
+
+html.exunity-theme .datepicker,
+html.exunity-theme .datepicker-dropdown,
+html.exunity-theme .bootstrap-datetimepicker-widget,
+html.exunity-theme .daterangepicker,
+html.exunity-theme .ui-datepicker,
+html.exunity-theme .ui-menu {
+	background: var(--ex-elev) !important;
+	color: var(--ex-text) !important;
+	border-color: var(--ex-border) !important;
+}
+
+html.exunity-theme .CodeMirror,
+html.exunity-theme .CodeMirror-gutters {
+	background: var(--ex-input) !important;
+	color: var(--ex-text) !important;
+	border-color: var(--ex-border) !important;
+}
+
+html.exunity-theme .jumbotron,
+html.exunity-theme .card,
+html.exunity-theme .thumbnail,
+html.exunity-theme .list-group,
+html.exunity-theme .modal-header,
+html.exunity-theme .modal-footer,
+html.exunity-theme .popover-title,
+html.exunity-theme .popover-content {
+	background: var(--ex-elev) !important;
+	color: var(--ex-text) !important;
+	border-color: var(--ex-border) !important;
+}
+
+html.exunity-theme #maincdr,
+html.exunity-theme #maincdr fieldset,
+html.exunity-theme #maincdr table,
+html.exunity-theme #maincdr table.cdr,
+html.exunity-theme #cdr_table,
+html.exunity-theme #maincdr td,
+html.exunity-theme #maincdr th,
+html.exunity-theme #maincdr .record,
+html.exunity-theme #maincdr .record td,
+html.exunity-theme #maincdr .record_col,
+html.exunity-theme #maincdr .playback,
+html.exunity-theme #maincdr .playback td,
+html.exunity-theme #maincdr .jp-audio,
+html.exunity-theme #maincdr .jp-type-single,
+html.exunity-theme #maincdr .jp-gui,
+html.exunity-theme #maincdr .jp-interface,
+html.exunity-theme #maincdr .jp-controls,
+html.exunity-theme #maincdr .progress {
+	background: var(--ex-elev) !important;
+	background-color: var(--ex-elev) !important;
+	color: var(--ex-text) !important;
+	border-color: var(--ex-border) !important;
+}
+html.exunity-theme .progress,
+html.exunity-theme .ui-progressbar {
+	background: var(--ex-input) !important;
+	background-image: none !important;
+	border: 1px solid var(--ex-border) !important;
+	border-radius: 6px;
+	box-shadow: none !important;
+	overflow: hidden;
+}
+html.exunity-theme .progress-bar,
+html.exunity-theme .progress-bar-striped,
+html.exunity-theme .progress-bar.active,
+html.exunity-theme .ui-progressbar .ui-progressbar-value {
+	background-color: var(--ex-accent-dim) !important;
+	background-image: linear-gradient(
+		45deg,
+		rgba(45, 212, 191, 0.2) 25%,
+		transparent 25%,
+		transparent 50%,
+		rgba(45, 212, 191, 0.2) 50%,
+		rgba(45, 212, 191, 0.2) 75%,
+		transparent 75%,
+		transparent
+	) !important;
+	color: #e6edf5 !important;
+}
+html.exunity-theme .progress-bar-success,
+html.exunity-theme .progress-bar.bg-success {
+	background-color: #0f766e !important;
+}
+html.exunity-theme .progress-bar-info,
+html.exunity-theme .progress-bar.bg-info {
+	background-color: #1e3a5f !important;
+}
+html.exunity-theme .progress-bar-warning,
+html.exunity-theme .progress-bar.bg-warning {
+	background-color: #854d0e !important;
+}
+html.exunity-theme .progress-bar-danger,
+html.exunity-theme .progress-bar.bg-danger {
+	background-color: #7f1d1d !important;
+}
+html.exunity-theme #dropzone {
+	background: var(--ex-input) !important;
+	border-color: var(--ex-border) !important;
+	color: var(--ex-muted) !important;
+}
+html.exunity-theme #dropzone .message {
+	color: var(--ex-muted) !important;
+}
+html.exunity-theme #dropzone.activate {
+	border-color: var(--ex-accent) !important;
+	background: var(--ex-elev-2) !important;
+}
+html.exunity-theme #files .file {
+	background: var(--ex-elev-2) !important;
+	border-color: var(--ex-border) !important;
+	color: var(--ex-text) !important;
+}
+html.exunity-theme .jp-audio-freepbx,
+html.exunity-theme .jp-audio-stream-freepbx,
+html.exunity-theme .jp-video-freepbx,
+html.exunity-theme .jp-audio,
+html.exunity-theme .jp-type-single,
+html.exunity-theme .jp-gui,
+html.exunity-theme .jp-interface {
+	background: var(--ex-elev) !important;
+	background-color: var(--ex-elev) !important;
+	border-color: var(--ex-border) !important;
+	color: var(--ex-text) !important;
+	box-shadow: none !important;
+}
+html.exunity-theme .jp-audio-freepbx .jp-play,
+html.exunity-theme .jp-audio-freepbx .jp-repeat,
+html.exunity-theme .jp-audio-freepbx .jp-mute,
+html.exunity-theme .jp-audio-freepbx .jp-unmute,
+html.exunity-theme .jp-audio-freepbx .jp-restart,
+html.exunity-theme .jp-controls,
+html.exunity-theme .jp-volume-controls {
+	color: var(--ex-accent) !important;
+	background: transparent !important;
+}
+html.exunity-theme .jp-current-time,
+html.exunity-theme .jp-duration,
+html.exunity-theme .jp-details {
+	color: var(--ex-muted) !important;
+}
+html.exunity-theme .jp-progress,
+html.exunity-theme .jp-seek-bar {
+	background: var(--ex-input) !important;
+	border-color: var(--ex-border) !important;
+}
+html.exunity-theme .jp-play-bar {
+	background-color: var(--ex-accent-dim) !important;
+}
+html.exunity-theme .jp-ball {
+	background-color: var(--ex-accent) !important;
+	border-color: var(--ex-accent) !important;
+}
+html.exunity-theme .jp-audio-freepbx.jp-state-looped .jp-repeat {
+	background-color: var(--ex-elev-2) !important;
+	box-shadow: none !important;
+	color: var(--ex-accent) !important;
+}
+html.exunity-theme #maincdr .cdr th,
+html.exunity-theme #cdr_table th,
+html.exunity-theme #maincdr fieldset legend,
+html.exunity-theme #maincdr .title,
+html.exunity-theme #maincdr .title a,
+html.exunity-theme #maincdr .form legend {
+	background: var(--ex-elev-2) !important;
+	color: var(--ex-text) !important;
+	border-color: var(--ex-border) !important;
+}
+html.exunity-theme #maincdr .record:hover,
+html.exunity-theme #maincdr .record:hover td {
+	background: var(--ex-elev-2) !important;
+	color: var(--ex-text) !important;
+}
+html.exunity-theme #maincdr a,
+html.exunity-theme #maincdr .record a,
+html.exunity-theme #cdr_table a {
+	color: var(--ex-accent) !important;
+}
+html.exunity-theme #maincdr .bar_calls {
+	background-color: var(--ex-accent-dim) !important;
+	color: var(--ex-text) !important;
+}
+html.exunity-theme #maincdr .bar_duration {
+	background-color: #1e3a5f !important;
+	color: var(--ex-text) !important;
+}
+html.exunity-theme .exunity-sticky-queues .checkbox {
+	margin: 2px 0;
+}
+html.exunity-theme .exunity-sticky-queues .checkbox label {
+	color: var(--ex-text);
+	font-weight: 400;
+}
+
+/* Login landing: BRAND_CSS_CUSTOM loads this file before auth, without html.exunity-theme */
+html:has(#login_icon_holder) {
+	color-scheme: dark;
+	--ex-bg: #101318;
+	--ex-elev: #181c23;
+	--ex-elev-2: #222733;
+	--ex-text: #e6edf5;
+	--ex-muted: #9aa8b6;
+	--ex-border: #2b3340;
+	--ex-accent: #2dd4bf;
+	--ex-accent-dim: #115e59;
+	--ex-input: #141922;
+}
+html:has(#login_icon_holder),
+html:has(#login_icon_holder) body,
+html:has(#login_icon_holder) #page,
+html:has(#login_icon_holder) #page_body {
+	background: #101318 !important;
+	color: #e6edf5 !important;
+}
+html:has(#login_icon_holder) .freepbx-navbar .navbar {
+	background: #181c23 !important;
+	border-color: #2b3340 !important;
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+}
+html:has(#login_icon_holder) .freepbx-navbar .navbar-nav > li > a,
+html:has(#login_icon_holder) .freepbx-navbar .navbar-nav .nav-link,
+html:has(#login_icon_holder) .freepbx-navbar .nav-item > a {
+	color: #e6edf5 !important;
+	background: transparent !important;
+	background-image: none !important;
+	border-color: transparent !important;
+	box-shadow: none !important;
+}
+html:has(#login_icon_holder) .freepbx-navbar .navbar-nav > li > a:hover,
+html:has(#login_icon_holder) .freepbx-navbar .navbar-nav .nav-link:hover {
+	color: #2dd4bf !important;
+}
+html:has(#login_icon_holder) .navbar-brand {
+	padding-left: 10px !important;
+}
+html:has(#login_icon_holder) .navbar-brand img,
+html:has(#login_icon_holder) #MENU_BRAND_IMAGE_TANGO_LEFT {
+	height: 22px !important;
+	width: auto !important;
+	max-height: 22px;
+}
+html:has(#login_icon_holder) .login_item_title {
+	width: 150px;
+	margin: 0 20px;
+	vertical-align: top;
+	text-align: center;
+}
+html:has(#login_icon_holder) .login_item_text {
+	display: block !important;
+	width: 150px !important;
+	max-width: 150px !important;
+	margin: 12px 0 0 !important;
+	padding: 0 !important;
+	color: #e6edf5 !important;
+	text-align: center !important;
+	line-height: 1.35;
+	white-space: normal;
+	word-break: break-word;
+}
+html:has(#login_icon_holder) a.login_item {
+	box-sizing: border-box;
+	width: 150px;
+	height: 150px;
+	margin: 0 auto;
+	border-radius: 6px;
+	border: 1px solid rgba(45, 212, 191, 0.7);
+	background: rgba(17, 94, 89, 0.55) none !important;
+	box-shadow: none;
+	filter: none;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	color: transparent;
+	font-size: 0;
+	line-height: 0;
+	text-decoration: none;
+	transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+html:has(#login_icon_holder) a.login_item::before {
+	font-family: FontAwesome;
+	font-weight: normal;
+	font-style: normal;
+	font-size: 52px;
+	line-height: 1;
+	color: #e6edf5;
+	speak: none;
+}
+html:has(#login_icon_holder) a.login_item:hover {
+	background: rgba(45, 212, 191, 0.28) none !important;
+	border-color: #2dd4bf;
+}
+html:has(#login_icon_holder) #login_admin::before {
+	content: "\f0ad";
+}
+html:has(#login_icon_holder) #login_ari::before {
+	content: "\f085";
+}
+html:has(#login_icon_holder) #login_fop::before {
+	content: "\f009";
+}
+html:has(#login_icon_holder) #login_support::before {
+	content: "\f025";
+}
+html:has(#login_icon_holder) #login_icon_holder {
+	overflow: visible;
+}
+html:has(#login_icon_holder) #login_icon_holder::before {
+	content: "";
+	display: block;
+	width: min(420px, 80%);
+	height: 88px;
+	margin: 0 auto 36px;
+	background: url("../img/login-logo.png?v=25") center / contain no-repeat;
+}
+html:has(#login_icon_holder) #key {
+	color: transparent !important;
+	font-size: 0 !important;
+}
+html:has(#login_icon_holder) #footer,
+html:has(#login_icon_holder) #footer_content,
+html:has(#login_icon_holder) #footer_content a,
+html:has(#login_icon_holder) #footer_text,
+html:has(#login_icon_holder) #login_message,
+html:has(#login_icon_holder) #login_message a {
+	background: #101318 !important;
+	color: #9aa8b6 !important;
+}
+html:has(#login_icon_holder) #footer > hr,
+html:has(#login_icon_holder) #footer hr {
+	border-color: #2b3340 !important;
+	background: #2b3340 !important;
+}
+html:has(#login_icon_holder) #login_message a:hover,
+html:has(#login_icon_holder) #footer_content a:hover {
+	color: #2dd4bf !important;
+}
+html:has(#login_icon_holder) #login_form,
+html:has(#login_icon_holder) #loginform {
+	background: #181c23;
+	color: #e6edf5;
+}
+html:has(#login_icon_holder) #loginform h3 {
+	color: #e6edf5;
+}
+html:has(#login_icon_holder) #loginform .form-control {
+	background: #141922;
+	color: #e6edf5;
+	border-color: #2b3340;
+}
+html:has(#login_icon_holder) #customContinue,
+html:has(#login_icon_holder) #loginform .btn {
+	background: #115e59;
+	border-color: #2dd4bf;
+	color: #fff;
+}
+
+html.exunity-theme,
+html.exunity-theme body,
+html:has(#login_icon_holder),
+html:has(#login_icon_holder) body {
+	height: auto !important;
+	min-height: 100vh;
+}
+html.exunity-theme body,
+html:has(#login_icon_holder) body {
+	display: flex;
+	flex-direction: column;
+}
+html.exunity-theme #page,
+html:has(#login_icon_holder) #page {
+	flex: 1 1 auto;
+	min-height: 0 !important;
+	width: 100%;
+}
+html.exunity-theme #page_body,
+html:has(#login_icon_holder) #page_body {
+	padding-bottom: 24px !important;
+}
+html:has(#login_icon_holder) #login_icon_holder {
+	height: auto;
+	margin-top: 8vh;
+}
+html.exunity-theme #footer,
+html:has(#login_icon_holder) #footer {
+	flex: 0 0 auto;
+	position: relative;
+	height: auto !important;
+	min-height: 72px;
+	bottom: auto !important;
+	margin-top: auto;
+	padding: 18px 24px 22px;
+	background: #101318 !important;
+}
+html.exunity-theme #footer > hr,
+html:has(#login_icon_holder) #footer > hr {
+	display: none;
+}
+html.exunity-theme #footer_content,
+html:has(#login_icon_holder) #footer_content {
+	display: flex !important;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px 24px;
+	max-width: 1080px;
+	width: 100%;
+	margin: 0 auto !important;
+	background: transparent !important;
+}
+html.exunity-theme #footer_content > [class*="col-"],
+html:has(#login_icon_holder) #footer_content > [class*="col-"] {
+	float: none;
+	flex: 1 1 220px;
+	width: auto !important;
+	max-width: none !important;
+	padding: 4px 12px;
+}
+html.exunity-theme #footer__left__logo__wrapper,
+html:has(#login_icon_holder) #footer__left__logo__wrapper {
+	justify-content: flex-start !important;
+}
+html.exunity-theme #footer__right__logo__wrapper,
+html:has(#login_icon_holder) #footer__right__logo__wrapper {
+	justify-content: flex-end !important;
+}
+html.exunity-theme #footer_text,
+html:has(#login_icon_holder) #footer_text {
+	flex: 1 1 280px;
+	text-align: center;
+	line-height: 1.45;
+	background: transparent !important;
+}
+html.exunity-theme #footer_logo1,
+html.exunity-theme #footer_logo,
+html:has(#login_icon_holder) #footer_logo1,
+html:has(#login_icon_holder) #footer_logo {
+	max-height: 36px;
+	width: auto;
+}
+html.exunity-theme .exunity-footer-credit,
+html:has(#login_icon_holder) .exunity-footer-credit {
+	margin-top: 8px;
+	font-size: 11px;
+	letter-spacing: 0.02em;
+}
+html.exunity-theme #footer_content .exunity-footer-credit a,
+html:has(#login_icon_holder) #footer_content .exunity-footer-credit a {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	color: #2dd4bf !important;
+	text-decoration: none;
+}
+html.exunity-theme #footer_content .exunity-footer-credit a:hover,
+html:has(#login_icon_holder) #footer_content .exunity-footer-credit a:hover {
+	color: #5eead4 !important;
+}
+html.exunity-theme .exunity-footer-credit img,
+html:has(#login_icon_holder) .exunity-footer-credit img {
+	height: 16px;
+	width: auto;
+}
+@media (max-width: 768px) {
+	html.exunity-theme #footer__left__logo__wrapper,
+	html.exunity-theme #footer__right__logo__wrapper,
+	html:has(#login_icon_holder) #footer__left__logo__wrapper,
+	html:has(#login_icon_holder) #footer__right__logo__wrapper {
+		justify-content: center !important;
+	}
+}

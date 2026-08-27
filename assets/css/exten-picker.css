@@ -1,0 +1,106 @@
+.exunity-picker {
+	display: flex;
+	align-items: stretch;
+	gap: 8px;
+	margin-top: 10px;
+	width: 100%;
+}
+.exunity-picker-col {
+	flex: 1;
+	min-width: 0;
+	border: 1px solid #d0d0d0;
+	border-radius: 4px;
+	background: #fff;
+	display: flex;
+	flex-direction: column;
+}
+.exunity-picker-head {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 8px 10px;
+	border-bottom: 1px solid #eee;
+	background: #f5f5f5;
+	font-weight: 600;
+}
+.exunity-picker-head input[type="checkbox"] {
+	margin: 0;
+}
+.exunity-picker-count {
+	color: #777;
+	font-weight: normal;
+}
+.exunity-picker-search {
+	padding: 6px 8px;
+	border-bottom: 1px solid #eee;
+}
+.exunity-picker-search input {
+	width: 100%;
+	height: 28px;
+	padding: 2px 8px 2px 28px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	background: #fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='3'><circle cx='11' cy='11' r='7'/><path d='M20 20l-3-3'/></svg>") no-repeat 8px 50%;
+}
+.exunity-picker-list {
+	height: 260px;
+	overflow-y: auto;
+}
+.exunity-picker-item {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 6px 10px;
+	cursor: pointer;
+	user-select: none;
+	border-bottom: 1px solid #f3f3f3;
+}
+.exunity-picker-item:hover {
+	background: #f7fbff;
+}
+.exunity-picker-item.is-checked {
+	background: #e8f4fc;
+}
+.exunity-picker-item input {
+	margin: 0;
+}
+.exunity-picker-item span {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.exunity-picker-btns {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 8px;
+}
+.exunity-picker-btns .btn {
+	min-width: 36px;
+	padding: 6px 10px;
+}
+.exunity-picker-hint {
+	margin-top: 6px;
+	color: #888;
+	font-size: 12px;
+}
+.exunity-picker-order {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 6px;
+}
+.exunity-picker-order .btn {
+	min-width: 36px;
+	padding: 6px 8px;
+}
+@media (max-width: 768px) {
+	.exunity-picker {
+		flex-direction: column;
+	}
+	.exunity-picker-btns,
+	.exunity-picker-order {
+		flex-direction: row;
+		justify-content: center;
+	}
+}

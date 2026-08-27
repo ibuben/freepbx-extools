@@ -1,0 +1,47 @@
+.exunity-routing-cid {
+	margin: 0 0 18px;
+	padding: 14px 16px 16px;
+	border: 1px solid #d0d0d0;
+	border-radius: 6px;
+	background: #f7f7f7;
+}
+.exunity-routing-cid-head {
+	font-weight: 600;
+	margin-bottom: 6px;
+}
+.exunity-routing-cid .row {
+	margin-bottom: 10px;
+}
+.exunity-routing-cid-actions {
+	margin: 0 0 10px;
+}
+.exunity-routing-cid-check {
+	display: block;
+	font-weight: 400;
+	margin: 8px 0 10px;
+}
+.exunity-routing-cid-paste {
+	display: block;
+	font-weight: 400;
+	margin: 10px 0 4px;
+	color: #777;
+}
+.exunity-routing-cid .exunity-picker {
+	margin-top: 8px;
+}
+.exunity-routing-cid .exunity-picker-list {
+	height: 200px;
+}
+.exunity-routing-cid #exunity-cid-list {
+	margin-top: 0;
+}
+html.exunity-theme .exunity-routing-cid {
+	background: var(--ex-elev);
+	border-color: var(--ex-border);
+	color: var(--ex-text);
+}
+html.exunity-theme .exunity-routing-cid .form-control {
+	background: var(--ex-input);
+	color: var(--ex-text);
+	border-color: var(--ex-border);
+}

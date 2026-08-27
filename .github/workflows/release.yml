@@ -1,0 +1,34 @@
+name: Release package
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  pack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build FreePBX tarball
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          TAG: ${{ github.event.release.tag_name || github.ref_name }}
+        run: bash scripts/pack.sh
+      - name: Upload release assets
+        if: github.event_name == 'release'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/exunity.tgz
+            dist/update.json
+      - name: Store artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: exunity-freepbx
+          path: |
+            dist/exunity.tgz
+            dist/update.json
