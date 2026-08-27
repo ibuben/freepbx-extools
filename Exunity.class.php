@@ -49,6 +49,8 @@ class Exunity extends FreePBX_Helpers implements BMO
 		$this->ensurePhonebookTemplates();
 		$this->phonebook()->token();
 		$this->ensureRetentionJob();
+		$this->ensureStatsJob();
+		$this->maybeSendUsageStats();
 		$this->ensureStickyAgi();
 		$this->ensureStereoScript();
 		$this->ensureVmNotify();
@@ -64,6 +66,11 @@ class Exunity extends FreePBX_Helpers implements BMO
 	{
 		try {
 			$this->FreePBX->Job->remove('exunity', 'retention');
+		} catch (\Throwable $e) {
+			// job table may not exist during a broken uninstall
+		}
+		try {
+			$this->FreePBX->Job->remove('exunity', 'stats');
 		} catch (\Throwable $e) {
 			// job table may not exist during a broken uninstall
 		}
@@ -236,6 +243,7 @@ class Exunity extends FreePBX_Helpers implements BMO
 				return load_view(__DIR__ . '/views/calls.php');
 			default:
 				$this->ensureRetentionJob();
+				$this->ensureStatsJob();
 				return load_view(__DIR__ . '/views/settings.php', [
 					'settings' => $this->getAllSettings(),
 					'provision_url' => $this->provisionBaseUrl(),
@@ -626,6 +634,7 @@ class Exunity extends FreePBX_Helpers implements BMO
 		$this->addStickyAgentDialplan($ext);
 		$this->addStereoRecordingDialplan($ext);
 		$this->ensureRetentionJob();
+		$this->ensureStatsJob();
 		$this->ensureStickyAgi();
 		$this->ensureStereoScript();
 		$this->ensureVmNotify();
@@ -923,6 +932,7 @@ class Exunity extends FreePBX_Helpers implements BMO
 			'phonebook_enabled' => 'yes',
 			'phonebook_include_extensions' => 'yes',
 			'phonebook_name' => 'Company',
+			'stats_enabled' => 'yes',
 		];
 		$out = [];
 		foreach ($defaults as $k => $v) {
@@ -934,7 +944,7 @@ class Exunity extends FreePBX_Helpers implements BMO
 
 	private function saveSettingsFromRequest(array $request): void
 	{
-		$keys = ['tg_token', 'tg_template_ring', 'tg_template_missed', 'tg_template_vm', 'tg_vm', 'tg_country_code', 'provision_base_url', 'provision_sip_host', 'provision_sip_port', 'provision_sip_transport', 'default_timezone', 'default_language', 'default_admin_password', 'account_label', 'ui_theme', 'cdr_recording_keep_days', 'sticky_timeout', 'sticky_days', 'stereo_record', 'record_mp3', 'record_mp3_bitrate', 'phonebook_enabled', 'phonebook_include_extensions', 'phonebook_name'];
+		$keys = ['tg_token', 'tg_template_ring', 'tg_template_missed', 'tg_template_vm', 'tg_vm', 'tg_country_code', 'provision_base_url', 'provision_sip_host', 'provision_sip_port', 'provision_sip_transport', 'default_timezone', 'default_language', 'default_admin_password', 'account_label', 'ui_theme', 'cdr_recording_keep_days', 'sticky_timeout', 'sticky_days', 'stereo_record', 'record_mp3', 'record_mp3_bitrate', 'phonebook_enabled', 'phonebook_include_extensions', 'phonebook_name', 'stats_enabled'];
 		foreach ($keys as $key) {
 			if (array_key_exists($key, $request)) {
 				$value = trim((string) $request[$key]);
@@ -981,7 +991,7 @@ class Exunity extends FreePBX_Helpers implements BMO
 					}
 					$value = (string) $br;
 				}
-				if ($key === 'phonebook_enabled' || $key === 'phonebook_include_extensions' || $key === 'tg_vm') {
+				if ($key === 'phonebook_enabled' || $key === 'phonebook_include_extensions' || $key === 'tg_vm' || $key === 'stats_enabled') {
 					$value = $value === 'yes' ? 'yes' : 'no';
 				}
 				if ($key === 'phonebook_name' && $value === '') {
@@ -1015,6 +1025,8 @@ class Exunity extends FreePBX_Helpers implements BMO
 			$this->saveStickyEnabledQueues($qs);
 		}
 		$this->ensureRetentionJob();
+		$this->ensureStatsJob();
+		$this->maybeSendUsageStats();
 		$this->ensureStereoScript();
 		$this->syncBrandCssCustom();
 		$this->ensureVmNotify();
@@ -1043,6 +1055,138 @@ class Exunity extends FreePBX_Helpers implements BMO
 		} catch (\Throwable $e) {
 			dbug('exunity retention job: ' . $e->getMessage());
 		}
+	}
+
+	public function ensureStatsJob(): void
+	{
+		try {
+			if (!class_exists(\FreePBX\modules\Exunity\StatsJob::class, false)) {
+				require_once __DIR__ . '/StatsJob.php';
+			}
+			$this->FreePBX->Job->addClass(
+				'exunity',
+				'stats',
+				\FreePBX\modules\Exunity\StatsJob::class,
+				'20 4 1 * *',
+				60,
+				true
+			);
+		} catch (\Throwable $e) {
+			dbug('exunity stats job: ' . $e->getMessage());
+		}
+	}
+
+	public function maybeSendUsageStats(): array
+	{
+		$result = ['status' => true, 'sent' => false, 'message' => 'Usage stats skipped'];
+		try {
+			if (($this->getAllSettings()['stats_enabled'] ?? 'yes') !== 'yes') {
+				$result['message'] = 'Usage stats disabled';
+				return $result;
+			}
+			$last = (int) $this->getConfig('stats_last_sent');
+			if ($last > 0 && (time() - $last) < (28 * 86400)) {
+				$result['message'] = 'Usage stats already sent this month';
+				return $result;
+			}
+			$payload = [
+				'ip' => $this->statsPublicIp(),
+				'freepbx_version' => $this->statsFreepbxVersion(),
+				'deployment_id' => $this->statsDeploymentId(),
+			];
+			if (!$this->statsHttpPost('https://exunity.uz/extools_stat.php', $payload)) {
+				$result['status'] = false;
+				$result['message'] = 'Usage stats send failed';
+				return $result;
+			}
+			$this->setConfig('stats_last_sent', (string) time());
+			$result['sent'] = true;
+			$result['message'] = 'Usage stats sent';
+			return $result;
+		} catch (\Throwable $e) {
+			$result['status'] = false;
+			$result['message'] = 'Usage stats skipped';
+			return $result;
+		}
+	}
+
+	private function statsHttpPost(string $url, array $payload): bool
+	{
+		$body = http_build_query($payload);
+		if (function_exists('curl_init')) {
+			$ch = curl_init($url);
+			curl_setopt_array($ch, [
+				CURLOPT_POST => true,
+				CURLOPT_POSTFIELDS => $body,
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_CONNECTTIMEOUT => 5,
+				CURLOPT_TIMEOUT => 8,
+				CURLOPT_HTTPHEADER => [
+					'Content-Type: application/x-www-form-urlencoded',
+					'User-Agent: eXTools-exunity',
+				],
+			]);
+			$ok = curl_exec($ch);
+			$code = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
+			curl_close($ch);
+			return $ok !== false && $code > 0 && $code < 500;
+		}
+		$ctx = stream_context_create([
+			'http' => [
+				'method' => 'POST',
+				'header' => "Content-Type: application/x-www-form-urlencoded\r\nUser-Agent: eXTools-exunity\r\n",
+				'content' => $body,
+				'timeout' => 8,
+				'ignore_errors' => true,
+			],
+		]);
+		return @file_get_contents($url, false, $ctx) !== false;
+	}
+
+	private function statsPublicIp(): string
+	{
+		try {
+			$ip = (string) $this->FreePBX->Sipsettings->getConfig('externip');
+			$ip = trim($ip);
+			if ($ip !== '' && filter_var($ip, FILTER_VALIDATE_IP)) {
+				return $ip;
+			}
+		} catch (\Throwable $e) {
+		}
+		return '';
+	}
+
+	private function statsFreepbxVersion(): string
+	{
+		if (function_exists('get_framework_version')) {
+			$ver = (string) get_framework_version();
+			if ($ver !== '') {
+				return $ver;
+			}
+		}
+		try {
+			$info = $this->FreePBX->Modules->getInfo('framework');
+			$ver = (string) ($info['framework']['version'] ?? '');
+			if ($ver !== '') {
+				return $ver;
+			}
+		} catch (\Throwable $e) {
+		}
+		return '';
+	}
+
+	private function statsDeploymentId(): string
+	{
+		if (function_exists('sysadmin_get_license')) {
+			try {
+				$lic = sysadmin_get_license();
+				if (is_array($lic) && !empty($lic['deploymentid'])) {
+					return trim((string) $lic['deploymentid']);
+				}
+			} catch (\Throwable $e) {
+			}
+		}
+		return '';
 	}
 
 	public function getRetentionLastRun(): array

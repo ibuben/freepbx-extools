@@ -52,6 +52,24 @@
 								</div>
 							</div>
 						</div>
+						<div class="element-container">
+							<div class="row">
+								<div class="col-md-12">
+									<div class="row">
+										<div class="form-group">
+											<div class="col-md-3"><label class="control-label" for="stats_enabled"><?php echo _('Anonymous usage stats') ?></label></div>
+											<div class="col-md-9">
+												<select class="form-control" id="stats_enabled" name="stats_enabled">
+													<option value="yes" <?php echo ($settings['stats_enabled'] ?? 'yes') === 'yes' ? 'selected' : '' ?>><?php echo _('Enabled') ?></option>
+													<option value="no" <?php echo ($settings['stats_enabled'] ?? 'yes') === 'no' ? 'selected' : '' ?>><?php echo _('Disabled') ?></option>
+												</select>
+												<span class="help-block"><?php echo _('Once a month we send this PBX IP address, FreePBX version, and Deployment ID (if Sysadmin has one) to eXUnity LAB. No more information is collected. This helps us see how widely eXTools is used and whether it still works on different FreePBX versions. We would be very grateful if you leave statistics enabled.') ?></span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 					<div id="exset-telegram" class="tab-pane" role="tabpanel">
 						<div class="element-container">
