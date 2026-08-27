@@ -1,57 +1,50 @@
 # eXTools (exunity)
 
-Open-source [FreePBX 17](https://www.freepbx.org/) module: bulk extensions, Telegram notify (including voicemail), HTTP phone provisioning (Yealink, Grandstream, Fanvil, MicroSIP), Contact Manager phonebooks, call history, recording options, and sticky last agent.
+Open-source [FreePBX 17](https://www.freepbx.org/) module from [eXUnity LAB](https://ex.uz): bulk extensions, Telegram notify (including voicemail), HTTP phone provisioning (Yealink, Grandstream, Fanvil, MicroSIP), Contact Manager phonebooks, call history, recording options, and sticky last agent.
 
 Internal module name (rawname) is `exunity`. License: [GPLv3+](LICENSE).
 
+Source: https://github.com/ibuben/exunity
+
 ## Install on FreePBX 17
 
-SSH to the PBX as root. Pick one method.
+SSH to the PBX as root.
 
-### 1. From a GitHub Release (recommended)
-
-After the first public release:
+### One line (current `main`)
 
 ```bash
-fwconsole ma downloadinstall https://github.com/OWNER/REPO/releases/latest/download/exunity.tgz
+fwconsole ma downloadinstall https://github.com/ibuben/exunity/archive/refs/heads/main.zip
 fwconsole reload
 ```
 
-Replace `OWNER/REPO` with the GitHub repository. Then **Admin → Module Admin**: enable **eXTools** if it is not already enabled, and apply config if FreePBX asks.
+Then **Admin → Module Admin**: enable **eXTools** if needed, and apply config if FreePBX asks.
 
-Upgrade later:
+### From a GitHub Release
+
+After a release tagged `v17.0.9` (or newer) exists:
 
 ```bash
-fwconsole ma downloadinstall https://github.com/OWNER/REPO/releases/latest/download/exunity.tgz
+fwconsole ma downloadinstall https://github.com/ibuben/exunity/releases/latest/download/exunity.tgz
 fwconsole reload
 ```
 
-### 2. From git (current `main`)
+The same command upgrades an existing install.
 
-Works with GitHub’s zip of the repo root (`module.xml` at the top of that zip folder):
-
-```bash
-fwconsole ma downloadinstall https://github.com/OWNER/REPO/archive/refs/heads/main.zip
-fwconsole reload
-```
-
-Or clone into the modules directory:
+### Git clone
 
 ```bash
 cd /var/www/html/admin/modules
-git clone https://github.com/OWNER/REPO.git exunity
+git clone https://github.com/ibuben/exunity.git exunity
 fwconsole ma install exunity
 fwconsole chown
 fwconsole reload
 ```
 
-### 3. Upload in the GUI
+### Upload in the GUI
 
-1. On a machine with this source: `bash scripts/pack.sh`
-2. Take `dist/exunity.tgz`
-3. FreePBX → **Admin → Module Admin → Upload modules**
-4. Upload the tarball, then **Process** / enable **eXTools**
-5. Apply Config
+1. `bash scripts/pack.sh` → `dist/exunity.tgz`
+2. FreePBX → **Admin → Module Admin → Upload modules**
+3. Process / enable **eXTools** → Apply Config
 
 ### Unsigned warning
 
@@ -69,24 +62,14 @@ Provisioning URL is served from `/provision/` on the PBX webroot (created on ins
 
 ```bash
 bash scripts/pack.sh
-# dist/exunity.tgz
-# dist/exunity-VERSION.tgz
-# dist/update.json   (download URL filled when GITHUB_REPOSITORY is set)
 ```
 
-Publishing a GitHub Release tagged `v17.0.9` (matching `module.xml`) runs `.github/workflows/release.yml` and attaches `exunity.tgz` plus `update.json`.
-
-Optional third-party updates in Module Admin: set this in `module.xml` (HTTPS only) and ship it in the next tarball:
-
-```xml
-<updateurl>https://github.com/OWNER/REPO/releases/latest/download/update.json</updateurl>
-```
+Publishing a GitHub Release tagged `v17.0.9` (matching `module.xml`) attaches `exunity.tgz` and `update.json` via `.github/workflows/release.yml`.
 
 ## Requirements
 
 - FreePBX 17 / framework and Core ≥ 17.0.1
-- Asterisk 22 on the distro this module was built against (other 17.x stacks may work)
-- Optional: Contact Manager (named phonebook groups), ffmpeg / sox / lame (voicemail Opus, stereo, MP3)
+- Optional: Contact Manager, ffmpeg / sox / lame (voicemail Opus, stereo, MP3)
 
 This module does not patch Core, Queues, Ring Groups, framework, or Voicemail PHP.
 

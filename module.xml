@@ -8,6 +8,8 @@
 	<licenselink>https://www.gnu.org/licenses/gpl-3.0.html</licenselink>
 	<category>Applications</category>
 	<description>eXTools: bulk extensions, Telegram notifications, HTTP auto-provisioning, and Contact Manager phonebooks for IP phones.</description>
+	<more-info>https://github.com/ibuben/exunity</more-info>
+	<updateurl>https://github.com/ibuben/exunity/releases/latest/download/update.json</updateurl>
 	<changelog>
 		*17.0.9* Public GPL release: Settings tabs, phonebooks, voicemail to Telegram, bulk CID, recordings, sticky last agent
 	</changelog>
