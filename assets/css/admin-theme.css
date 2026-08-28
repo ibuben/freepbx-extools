@@ -257,10 +257,14 @@ html.exunity-theme .dropdown-divider {
 html.exunity-theme .fpbx-container .display,
 html.exunity-theme .fpbx-container .display.full-border,
 html.exunity-theme .fpbx-container .display .section,
+html.exunity-theme .display.full-border,
 html.exunity-theme .well,
 html.exunity-theme .panel,
 html.exunity-theme .panel-body,
+html.exunity-theme .panel-heading,
+html.exunity-theme .panel-footer,
 html.exunity-theme .panel-default > .panel-heading,
+html.exunity-theme .panel-default > .panel-footer,
 html.exunity-theme .modal-content,
 html.exunity-theme .popover,
 html.exunity-theme .ui-dialog,
@@ -299,6 +303,25 @@ html.exunity-theme #selected,
 html.exunity-theme #unselected {
 	background: var(--ex-input) !important;
 	border-color: var(--ex-border) !important;
+}
+html.exunity-theme ul.sortable,
+html.exunity-theme ul.sortable.ui-sortable,
+html.exunity-theme ul.sortable.ui-sortable li,
+html.exunity-theme ul.sortable.ui-sortable a,
+html.exunity-theme ul.sortable.ui-sortable a:hover,
+html.exunity-theme ul.sortable.ui-sortable a:focus,
+html.exunity-theme ul.sortable.ui-sortable a:visited,
+html.exunity-theme ul.sortable label,
+html.exunity-theme ul.sortable small {
+	background: var(--ex-elev) !important;
+	background-color: var(--ex-elev) !important;
+	color: var(--ex-text) !important;
+	border-color: var(--ex-border) !important;
+}
+html.exunity-theme ul.sortable.ui-sortable li > a:hover,
+html.exunity-theme ul.sortable.ui-sortable a:hover {
+	background: var(--ex-elev-2) !important;
+	color: var(--ex-accent) !important;
 }
 html.exunity-theme .element-container {
 	border-color: var(--ex-border);
@@ -341,18 +364,26 @@ html.exunity-theme optgroup {
 
 html.exunity-theme .btn,
 html.exunity-theme .btn-default,
-html.exunity-theme .btn-secondary {
+html.exunity-theme .btn-secondary,
+html.exunity-theme input[type="button"],
+html.exunity-theme input[type="reset"],
+html.exunity-theme input[type="submit"] {
 	background: var(--ex-elev-2) !important;
+	background-image: none !important;
 	color: var(--ex-text) !important;
 	border-color: var(--ex-border) !important;
 }
 html.exunity-theme .btn:hover,
-html.exunity-theme .btn-default:hover {
+html.exunity-theme .btn-default:hover,
+html.exunity-theme input[type="button"]:hover,
+html.exunity-theme input[type="reset"]:hover,
+html.exunity-theme input[type="submit"]:hover {
 	background: #2c3340 !important;
 	color: #fff !important;
 }
 html.exunity-theme .btn-primary,
 html.exunity-theme #action-bar #submit,
+html.exunity-theme #action-bar #import,
 html.exunity-theme .fpbx-submit #submit {
 	background: var(--ex-accent-dim) !important;
 	border-color: var(--ex-accent) !important;
@@ -363,6 +394,24 @@ html.exunity-theme #action-bar #delete {
 	background: #7f1d1d !important;
 	border-color: var(--ex-danger) !important;
 	color: #fff !important;
+}
+html.exunity-theme .radioset input[type="radio"] + label,
+html.exunity-theme .radioset input[type="checkbox"] ~ label {
+	background: var(--ex-elev-2) !important;
+	background-image: none !important;
+	color: var(--ex-text) !important;
+	border: 1px solid var(--ex-border) !important;
+}
+html.exunity-theme .radioset input[type="radio"] + label:hover,
+html.exunity-theme .radioset input[type="checkbox"] ~ label:hover {
+	background: #2c3340 !important;
+	color: #fff !important;
+}
+html.exunity-theme .radioset input[type="radio"]:checked + label,
+html.exunity-theme .radioset input[type="checkbox"]:checked + label {
+	background: var(--ex-accent-dim) !important;
+	color: #fff !important;
+	border-color: var(--ex-accent) !important;
 }
 
 html.exunity-theme .nav-tabs,
@@ -423,6 +472,40 @@ html.exunity-theme .nav-container .scroller i {
 html.exunity-theme #floating-nav-bar {
 	background-color: var(--ex-elev) !important;
 	border-color: var(--ex-border) !important;
+}
+html.exunity-theme #floating-nav-bar .floating-nav-bar-contents {
+	background: var(--ex-elev) !important;
+	color: var(--ex-text) !important;
+}
+html.exunity-theme .rnav,
+html.exunity-theme .rnav ul,
+html.exunity-theme .bootnav,
+html.exunity-theme .bootnav .list-group {
+	background: transparent !important;
+	border-color: var(--ex-border) !important;
+	color: var(--ex-text) !important;
+}
+html.exunity-theme .rnav ul a,
+html.exunity-theme .rnav ul li > a,
+html.exunity-theme .rnav ul a:visited,
+html.exunity-theme .rnav .ui-widget-content a,
+html.exunity-theme .bootnav a.list-group-item {
+	background: var(--ex-elev) !important;
+	background-color: var(--ex-elev) !important;
+	color: var(--ex-text) !important;
+	border-color: var(--ex-border) !important;
+}
+html.exunity-theme .rnav ul li > a:hover,
+html.exunity-theme .rnav ul a:hover,
+html.exunity-theme .bootnav a.list-group-item:hover,
+html.exunity-theme .bootnav a.list-group-item:focus {
+	background: var(--ex-elev-2) !important;
+	color: var(--ex-accent) !important;
+}
+html.exunity-theme .rnav ul li > a.active,
+html.exunity-theme .bootnav a.list-group-item.active {
+	background: var(--ex-accent-dim) !important;
+	color: #fff !important;
 }
 
 html.exunity-theme .table,
@@ -549,6 +632,54 @@ html.exunity-theme .alert-info {
 	color: #99f6e4 !important;
 	border-color: #134e4a !important;
 }
+html.exunity-theme .panel-info,
+html.exunity-theme .panel-help,
+html.exunity-theme .panel-info > .panel-heading,
+html.exunity-theme .panel-help > .panel-heading,
+html.exunity-theme .panel-info .panel-title,
+html.exunity-theme .panel-help .panel-title,
+html.exunity-theme .panel-info .panel-body,
+html.exunity-theme .panel-help .panel-body,
+html.exunity-theme .panel-info .panel-collapse {
+	background: #132e2c !important;
+	color: #99f6e4 !important;
+	border-color: #134e4a !important;
+}
+html.exunity-theme .panel-info .panel-heading .fa,
+html.exunity-theme .panel-help .panel-heading .fa {
+	color: var(--ex-accent) !important;
+}
+html.exunity-theme .fpbx-container .display .element-container,
+html.exunity-theme .fpbx-container .display .element-container:nth-child(odd),
+html.exunity-theme .tab-content.display .element-container,
+html.exunity-theme .tab-content.display .element-container:nth-child(odd) {
+	background: var(--ex-elev) !important;
+	color: var(--ex-text) !important;
+}
+html.exunity-theme .fpbx-container .display .element-container:nth-child(even),
+html.exunity-theme .tab-content.display .element-container:nth-child(even) {
+	background: #1c212b !important;
+	color: var(--ex-text) !important;
+}
+html.exunity-theme .element-container .control-label {
+	color: var(--ex-text) !important;
+}
+html.exunity-theme .tab-content.display,
+html.exunity-theme .tab-content .tab-pane {
+	background: transparent !important;
+	color: var(--ex-text) !important;
+}
+html.exunity-theme .list-group-item {
+	background: var(--ex-elev-2) !important;
+	color: var(--ex-text) !important;
+	border-color: var(--ex-border) !important;
+}
+html.exunity-theme .list-group-item.active,
+html.exunity-theme a.list-group-item.active {
+	background: var(--ex-accent-dim) !important;
+	color: #fff !important;
+	border-color: var(--ex-accent) !important;
+}
 html.exunity-theme .alert-success {
 	background: #14532d !important;
 	color: #bbf7d0 !important;
@@ -566,9 +697,60 @@ html.exunity-theme .alert-danger {
 }
 
 html.exunity-theme #action-bar {
-	background: var(--ex-elev) !important;
-	border-top: 1px solid var(--ex-border) !important;
+	background: transparent !important;
+	border: none !important;
 	color: var(--ex-text) !important;
+}
+html.exunity-theme #action-buttons {
+	background: var(--ex-elev) !important;
+	border-color: var(--ex-border) !important;
+	color: var(--ex-text) !important;
+}
+html.exunity-theme #action-bar-hide {
+	background: transparent !important;
+	border: none !important;
+	color: var(--ex-muted) !important;
+	box-shadow: none !important;
+	min-width: 14px !important;
+}
+html.exunity-theme .toolbar,
+html.exunity-theme #logfiles_toolbar {
+	background: var(--ex-elev) !important;
+	border-color: var(--ex-border) !important;
+	color: var(--ex-text) !important;
+}
+html.exunity-theme .toolbar .btn,
+html.exunity-theme .toolbar .radioset label {
+	border-color: var(--ex-border) !important;
+}
+html.exunity-theme .toolbar .form-control,
+html.exunity-theme .toolbar .form-control:disabled,
+html.exunity-theme .toolbar .input-group-text {
+	background: var(--ex-input) !important;
+	color: var(--ex-text) !important;
+	border-color: var(--ex-border) !important;
+}
+html.exunity-theme .toolbar .dropdown-menu,
+html.exunity-theme .toolbar .dropdown-menu li,
+html.exunity-theme .toolbar .dropdown-menu li a {
+	background: var(--ex-elev-2) !important;
+	color: var(--ex-text) !important;
+	border-color: var(--ex-border) !important;
+}
+html.exunity-theme .toolbar .dropdown-menu li:hover,
+html.exunity-theme .toolbar .dropdown-menu li a:hover {
+	background: var(--ex-input) !important;
+	color: var(--ex-accent) !important;
+}
+html.exunity-theme .toolbar .dropdown-menu li[role="separator"] {
+	background: var(--ex-border) !important;
+}
+html.exunity-theme .form-control:disabled,
+html.exunity-theme input:disabled,
+html.exunity-theme select:disabled {
+	background: var(--ex-input) !important;
+	color: var(--ex-muted) !important;
+	opacity: 0.85;
 }
 html.exunity-theme #fpbxsearch,
 html.exunity-theme #fpbxsearch input {
@@ -850,6 +1032,44 @@ html.exunity-theme .CodeMirror-gutters {
 	background: var(--ex-input) !important;
 	color: var(--ex-text) !important;
 	border-color: var(--ex-border) !important;
+}
+html.exunity-theme .Editor-container,
+html.exunity-theme .line-control-menu-bar,
+html.exunity-theme .line-control-status-bar,
+html.exunity-theme .Editor-editor,
+html.exunity-theme [id^="menuBarDiv_"],
+html.exunity-theme [id^="statusbar_"] {
+	background: var(--ex-elev-2) !important;
+	background-image: none !important;
+	background-color: var(--ex-elev-2) !important;
+	color: var(--ex-text) !important;
+	border-color: var(--ex-border) !important;
+	filter: none !important;
+	text-shadow: none !important;
+}
+html.exunity-theme .Editor-editor {
+	background: var(--ex-input) !important;
+	background-color: var(--ex-input) !important;
+}
+html.exunity-theme .line-control-menu-bar a.btn,
+html.exunity-theme .line-control-menu-bar .btn {
+	background: var(--ex-elev) !important;
+	background-image: none !important;
+	color: var(--ex-text) !important;
+	border-color: var(--ex-border) !important;
+}
+html.exunity-theme .line-control-menu-bar .dropdown-toggle .caret {
+	border-top-color: var(--ex-muted) !important;
+}
+html.exunity-theme .specialCntr,
+html.exunity-theme div.activeColour,
+html.exunity-theme .specialCntr ul li {
+	background: var(--ex-elev) !important;
+	color: var(--ex-text) !important;
+}
+html.exunity-theme .specialCntr ul li:hover {
+	background: var(--ex-accent-dim) !important;
+	color: #fff !important;
 }
 
 html.exunity-theme .jumbotron,

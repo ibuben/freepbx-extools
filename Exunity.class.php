@@ -544,7 +544,9 @@ class Exunity extends FreePBX_Helpers implements BMO
 			'button-active-border-color' => '#2dd4bf',
 			'form-button-background-color' => '#222733',
 			'form-button-text-color' => '#e6edf5',
-			'submit-button-background-color' => '#115e59',
+			'form-button-active-background-color' => '#115e59',
+			'form-button-active-text-color' => '#ffffff',
+			'submit-button-background-color' => '#222733',
 			'floating-button-background-color' => '#222733',
 			'info-background-color' => '#132e2c',
 			'info-text-color' => '#99f6e4',
@@ -595,8 +597,8 @@ class Exunity extends FreePBX_Helpers implements BMO
 		} catch (\Throwable $e) {
 			$ver = '17.0.4';
 		}
-		$css = 'assets/exunity/css/admin-theme.css?load_version=' . $ver . '&theme=31';
-		$js = 'assets/exunity/js/admin-theme.js?load_version=' . $ver . '&theme=31';
+		$css = 'assets/exunity/css/admin-theme.css?load_version=' . $ver . '&theme=38';
+		$js = 'assets/exunity/js/admin-theme.js?load_version=' . $ver . '&theme=38';
 		echo '<script src="' . htmlspecialchars($js, ENT_QUOTES) . '"></script>';
 		echo '<script>(function(){document.documentElement.classList.add("exunity-theme");function go(){if(!document.head){return setTimeout(go,20);}if(document.getElementById("exunity-theme-css")){return;}var l=document.createElement("link");l.id="exunity-theme-css";l.rel="stylesheet";l.href=' . json_encode($css) . ';document.head.appendChild(l);}if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",go);}else{go();}})();</script>';
 	}
