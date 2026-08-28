@@ -597,8 +597,8 @@ class Exunity extends FreePBX_Helpers implements BMO
 		} catch (\Throwable $e) {
 			$ver = '17.0.4';
 		}
-		$css = 'assets/exunity/css/admin-theme.css?load_version=' . $ver . '&theme=42';
-		$js = 'assets/exunity/js/admin-theme.js?load_version=' . $ver . '&theme=42';
+		$css = 'assets/exunity/css/admin-theme.css?load_version=' . $ver . '&theme=43';
+		$js = 'assets/exunity/js/admin-theme.js?load_version=' . $ver . '&theme=43';
 		echo '<script src="' . htmlspecialchars($js, ENT_QUOTES) . '"></script>';
 		echo '<script>(function(){document.documentElement.classList.add("exunity-theme");function go(){if(!document.head){return setTimeout(go,20);}if(document.getElementById("exunity-theme-css")){return;}var l=document.createElement("link");l.id="exunity-theme-css";l.rel="stylesheet";l.href=' . json_encode($css) . ';document.head.appendChild(l);}if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",go);}else{go();}})();</script>';
 	}

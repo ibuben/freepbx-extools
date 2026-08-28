@@ -2,7 +2,7 @@
 	<rawname>exunity</rawname>
 	<repo>unsupported</repo>
 	<name>eXTools</name>
-	<version>17.0.10</version>
+	<version>17.0.11</version>
 	<publisher>eXTools</publisher>
 	<license>GPLv3+</license>
 	<licenselink>https://www.gnu.org/licenses/gpl-3.0.html</licenselink>
@@ -11,6 +11,7 @@
 	<more-info>https://github.com/ibuben/freepbx-extools</more-info>
 	<updateurl>https://github.com/ibuben/freepbx-extools/releases/latest/download/update.json</updateurl>
 	<changelog>
+		*17.0.11* Stereo/MP3 recordings convert after the call; settings tab highlight; dark theme navbar and radiosets
 		*17.0.10* Monthly anonymous usage stats (IP, FreePBX version, Deployment ID); bilingual README
 		*17.0.9* Public GPL release: Settings tabs, phonebooks, voicemail to Telegram, bulk CID, recordings, sticky last agent
 	</changelog>

@@ -54,7 +54,7 @@
 		line.className = 'exunity-footer-credit';
 		line.innerHTML = '<a href="https://exunity.uz/?ref=xpbx" target="_blank" rel="noopener noreferrer">'
 			+ '<img src="assets/exunity/img/navbar-logo.png?v=20" alt="">'
-			+ '<span>eXTools 17.0.8</span></a>';
+			+ '<span>eXTools 17.0.11</span></a>';
 		text.appendChild(line);
 	}
 

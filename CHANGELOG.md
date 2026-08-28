@@ -1,5 +1,11 @@
 # Changelog
 
+## 17.0.11
+
+- Stereo and MP3 conversion after hangup actually runs (MixMonitor post-process)
+- Settings Admin tab no longer stays highlighted when another tab is open
+- Dark theme: remaining FreePBX chrome, compact Apply Config, radioset Yes/No overlap
+
 ## 17.0.10
 
 - Monthly anonymous usage stats (IP, FreePBX version, Deployment ID)
