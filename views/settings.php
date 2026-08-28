@@ -12,23 +12,23 @@
 			<div class="display no-border">
 				<div class="nav-container" id="exunity-settings-tabs">
 					<ul class="nav nav-tabs list" role="tablist">
-						<li role="presentation" class="active">
-							<a href="#exset-admin" aria-controls="exset-admin" role="tab" data-toggle="tab"><?php echo _('Admin') ?></a>
+						<li class="nav-item" role="presentation">
+							<a class="nav-link active" href="#exset-admin" aria-controls="exset-admin" role="tab" data-toggle="tab"><?php echo _('Admin') ?></a>
 						</li>
-						<li role="presentation">
-							<a href="#exset-telegram" aria-controls="exset-telegram" role="tab" data-toggle="tab"><?php echo _('Telegram') ?></a>
+						<li class="nav-item" role="presentation">
+							<a class="nav-link" href="#exset-telegram" aria-controls="exset-telegram" role="tab" data-toggle="tab"><?php echo _('Telegram') ?></a>
 						</li>
-						<li role="presentation">
-							<a href="#exset-phones" aria-controls="exset-phones" role="tab" data-toggle="tab"><?php echo _('Phones') ?></a>
+						<li class="nav-item" role="presentation">
+							<a class="nav-link" href="#exset-phones" aria-controls="exset-phones" role="tab" data-toggle="tab"><?php echo _('Phones') ?></a>
 						</li>
-						<li role="presentation">
-							<a href="#exset-phonebook" aria-controls="exset-phonebook" role="tab" data-toggle="tab"><?php echo _('Phonebook') ?></a>
+						<li class="nav-item" role="presentation">
+							<a class="nav-link" href="#exset-phonebook" aria-controls="exset-phonebook" role="tab" data-toggle="tab"><?php echo _('Phonebook') ?></a>
 						</li>
-						<li role="presentation">
-							<a href="#exset-recordings" aria-controls="exset-recordings" role="tab" data-toggle="tab"><?php echo _('Recordings') ?></a>
+						<li class="nav-item" role="presentation">
+							<a class="nav-link" href="#exset-recordings" aria-controls="exset-recordings" role="tab" data-toggle="tab"><?php echo _('Recordings') ?></a>
 						</li>
-						<li role="presentation">
-							<a href="#exset-queues" aria-controls="exset-queues" role="tab" data-toggle="tab"><?php echo _('Queues') ?></a>
+						<li class="nav-item" role="presentation">
+							<a class="nav-link" href="#exset-queues" aria-controls="exset-queues" role="tab" data-toggle="tab"><?php echo _('Queues') ?></a>
 						</li>
 					</ul>
 				</div>
@@ -414,7 +414,7 @@
 													<option value="no" <?php echo ($settings['stereo_record'] ?? 'no') === 'no' ? 'selected' : '' ?>><?php echo _('Disabled (mono mix)') ?></option>
 													<option value="yes" <?php echo ($settings['stereo_record'] ?? 'no') === 'yes' ? 'selected' : '' ?>><?php echo _('Enabled') ?></option>
 												</select>
-												<span class="help-block"><?php echo _('Save new call recordings as stereo WAV: left = party A (the channel being recorded, usually the caller), right = party B (the other party). Headphones: A in the left ear, B in the right. Existing files stay as they are. Apply Config after saving. Requires sox.') ?></span>
+												<span class="help-block"><?php echo _('Save new call recordings as stereo WAV: left = party A (the channel being recorded, usually the caller), right = party B (the other party). Headphones: A in the left ear, B in the right. Existing files stay as they are. Apply Config after saving, then make a new test call. Requires sox.') ?></span>
 											</div>
 										</div>
 									</div>
@@ -432,7 +432,7 @@
 													<option value="no" <?php echo ($settings['record_mp3'] ?? 'no') === 'no' ? 'selected' : '' ?>><?php echo _('Disabled (keep original format)') ?></option>
 													<option value="yes" <?php echo ($settings['record_mp3'] ?? 'no') === 'yes' ? 'selected' : '' ?>><?php echo _('Enabled') ?></option>
 												</select>
-												<span class="help-block"><?php echo _('After the call, convert the recording to MP3 and delete the WAV. Works together with stereo (stereo MP3: A left, B right). Existing files stay as they are. Apply Config after saving. Requires ffmpeg or lame.') ?></span>
+												<span class="help-block"><?php echo _('After the call, convert the recording to MP3 and delete the WAV. Works together with stereo (stereo MP3: A left, B right). Existing files stay as they are. Apply Config after saving, then make a new test call. Requires ffmpeg or lame.') ?></span>
 											</div>
 										</div>
 									</div>

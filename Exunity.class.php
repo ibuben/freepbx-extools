@@ -597,8 +597,8 @@ class Exunity extends FreePBX_Helpers implements BMO
 		} catch (\Throwable $e) {
 			$ver = '17.0.4';
 		}
-		$css = 'assets/exunity/css/admin-theme.css?load_version=' . $ver . '&theme=38';
-		$js = 'assets/exunity/js/admin-theme.js?load_version=' . $ver . '&theme=38';
+		$css = 'assets/exunity/css/admin-theme.css?load_version=' . $ver . '&theme=42';
+		$js = 'assets/exunity/js/admin-theme.js?load_version=' . $ver . '&theme=42';
 		echo '<script src="' . htmlspecialchars($js, ENT_QUOTES) . '"></script>';
 		echo '<script>(function(){document.documentElement.classList.add("exunity-theme");function go(){if(!document.head){return setTimeout(go,20);}if(document.getElementById("exunity-theme-css")){return;}var l=document.createElement("link");l.id="exunity-theme-css";l.rel="stylesheet";l.href=' . json_encode($css) . ';document.head.appendChild(l);}if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",go);}else{go();}})();</script>';
 	}
@@ -690,6 +690,9 @@ class Exunity extends FreePBX_Helpers implements BMO
 		$srcData = file_get_contents($src);
 		foreach (['exunity_mixmon_post.sh', 'exunity_stereo.sh'] as $name) {
 			$dest = $dir . '/' . $name;
+			if (is_link($dest)) {
+				@unlink($dest);
+			}
 			$destData = is_file($dest) ? file_get_contents($dest) : '';
 			if ($srcData !== false && $srcData !== $destData) {
 				file_put_contents($dest, $srcData);
@@ -723,14 +726,34 @@ class Exunity extends FreePBX_Helpers implements BMO
 		}
 	}
 
-	private function stereoPostCommand(): string
+	private function isUsableMixmonPost(string $existing): bool
+	{
+		if ($existing === '' || str_contains($existing, 'exunity_mixmon_post.sh') || str_contains($existing, 'exunity_stereo.sh')) {
+			return false;
+		}
+		// FreePBX Advanced Setting is sometimes the literal "MIXMON_FORMAT".
+		if (!str_contains($existing, '/') && !str_contains($existing, '.sh')) {
+			return false;
+		}
+		// Semicolon starts a dialplan comment and cuts off MixMonitor's closing ')'.
+		if (str_contains($existing, ';')) {
+			return false;
+		}
+		return true;
+	}
+
+	private function stereoPostCommand(string $fallbackFile = ''): string
 	{
 		$dir = $this->FreePBX->Config->get('AMPBIN') ?: '/var/lib/asterisk/bin';
 		$script = rtrim((string) $dir, '/') . '/exunity_mixmon_post.sh';
-		$post = $script . ' ^{MIXMONITOR_FILENAME}';
+		if ($fallbackFile === '') {
+			$fallbackFile = '${MIXMON_DIR}${YEAR}/${MONTH}/${DAY}/${CALLFILENAME}.${MON_FMT}';
+		}
+		// Do not put ';' here — Asterisk treats it as a comment to end-of-line.
+		$post = '/bin/bash ' . $script . ' ^{MIXMONITOR_FILENAME} ' . $fallbackFile;
 		$existing = trim((string) $this->FreePBX->Config->get('MIXMON_POST'));
-		if ($existing !== '' && !str_contains($existing, 'exunity_mixmon_post.sh') && !str_contains($existing, 'exunity_stereo.sh')) {
-			$post .= ' ; ' . $existing;
+		if ($this->isUsableMixmonPost($existing)) {
+			$post .= ' && ' . $existing;
 		}
 		return $post;
 	}
@@ -748,6 +771,7 @@ class Exunity extends FreePBX_Helpers implements BMO
 		}
 		$this->ensureStereoScript();
 		$post = $this->stereoPostCommand();
+		$qpost = $this->stereoPostCommand('${MONITOR_FILENAME}.${MON_FMT}');
 		$stereo = (($this->getAllSettings()['stereo_record'] ?? 'no') === 'yes');
 		$legs = '${MIXMON_DIR}${YEAR}/${MONTH}/${DAY}/${CALLFILENAME}';
 		$opts = $stereo
@@ -768,7 +792,7 @@ class Exunity extends FreePBX_Helpers implements BMO
 			$ext->replace('sub-record-check', 'recq', 3, new \ext_mixmonitor(
 				'${MONITOR_FILENAME}.${MON_FMT}',
 				$qopts,
-				$post
+				$qpost
 			));
 		} catch (\Throwable $e) {
 		}

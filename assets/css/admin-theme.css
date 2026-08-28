@@ -155,15 +155,47 @@ html.exunity-theme .freepbx-navbar .navbar-nav > li > a[aria-expanded="true"]::a
 html.exunity-theme .freepbx-navbar .navbar-nav .nav-link:hover::after {
 	transform: scaleX(1);
 }
+html.exunity-theme .freepbx-navbar .stuck-right {
+	display: flex !important;
+	flex-wrap: nowrap !important;
+	align-items: center !important;
+	white-space: nowrap !important;
+	margin: 0;
+	padding: 0 6px 0 0;
+	gap: 2px;
+}
+html.exunity-theme .freepbx-navbar .stuck-right > li {
+	display: flex !important;
+	flex: 0 0 auto;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
 html.exunity-theme .freepbx-navbar .stuck-right .nav-button,
-html.exunity-theme .freepbx-navbar .stuck-right .btn {
+html.exunity-theme .freepbx-navbar .stuck-right .btn,
+html.exunity-theme .freepbx-navbar .stuck-right #search-btn {
 	background: var(--ex-elev-2) !important;
 	color: var(--ex-text) !important;
 	border-color: var(--ex-border) !important;
 	box-shadow: none;
+	height: 27px !important;
+	min-height: 27px !important;
+	max-height: 27px !important;
+	min-width: 0 !important;
+	padding: 2px 8px !important;
+	line-height: 21px !important;
+	white-space: nowrap !important;
+	box-sizing: border-box !important;
+}
+html.exunity-theme .freepbx-navbar .stuck-right #search-btn,
+html.exunity-theme .freepbx-navbar .stuck-right .admin-btn > .btn {
+	display: inline-flex !important;
+	align-items: center !important;
+	justify-content: center !important;
 }
 html.exunity-theme .freepbx-navbar .stuck-right .nav-button:hover,
-html.exunity-theme .freepbx-navbar .stuck-right .btn:hover {
+html.exunity-theme .freepbx-navbar .stuck-right .btn:hover,
+html.exunity-theme .freepbx-navbar .stuck-right #search-btn:hover {
 	background: #2c3340 !important;
 	border-color: var(--ex-accent) !important;
 	color: #fff !important;
@@ -175,6 +207,8 @@ html.exunity-theme .freepbx-navbar .stuck-right > li > a.reload-btn:hover {
 	color: #fff !important;
 	border: none !important;
 	box-shadow: none !important;
+	padding: 2px 10px !important;
+	font-size: 13px !important;
 }
 html.exunity-theme .freepbx-navbar .dropdown-menu {
 	background: var(--ex-elev) !important;
@@ -395,23 +429,37 @@ html.exunity-theme #action-bar #delete {
 	border-color: var(--ex-danger) !important;
 	color: #fff !important;
 }
+html.exunity-theme .radioset {
+	display: inline-flex;
+	align-items: stretch;
+	white-space: nowrap;
+}
 html.exunity-theme .radioset input[type="radio"] + label,
 html.exunity-theme .radioset input[type="checkbox"] ~ label {
 	background: var(--ex-elev-2) !important;
 	background-image: none !important;
 	color: var(--ex-text) !important;
 	border: 1px solid var(--ex-border) !important;
+	margin-right: 0 !important;
+	position: relative;
+	z-index: 1;
+}
+html.exunity-theme .radioset input[type="radio"] + label:not(:first-of-type),
+html.exunity-theme .radioset input[type="checkbox"] ~ label:not(:first-of-type) {
+	margin-left: -1px !important;
 }
 html.exunity-theme .radioset input[type="radio"] + label:hover,
 html.exunity-theme .radioset input[type="checkbox"] ~ label:hover {
 	background: #2c3340 !important;
 	color: #fff !important;
+	z-index: 2;
 }
 html.exunity-theme .radioset input[type="radio"]:checked + label,
 html.exunity-theme .radioset input[type="checkbox"]:checked + label {
 	background: var(--ex-accent-dim) !important;
 	color: #fff !important;
 	border-color: var(--ex-accent) !important;
+	z-index: 3;
 }
 
 html.exunity-theme .nav-tabs,
@@ -447,6 +495,17 @@ html.exunity-theme .nav-tabs .nav-item.show .nav-link {
 	color: var(--ex-accent) !important;
 	border-color: var(--ex-border) !important;
 	border-bottom-color: var(--ex-elev) !important;
+}
+/* BS4 marks the <a>, but many templates still leave class="active" on the first <li>. */
+html.exunity-theme .nav.nav-tabs:has(> li > a.active) > li.active > a:not(.active),
+html.exunity-theme .nav.nav-tabs:has(> li > a.active) > li.active > a:not(.active):hover,
+html.exunity-theme .nav.nav-tabs:has(> li > a.active) > li.active > a:not(.active):focus,
+html.exunity-theme .nav.nav-tabs:has(> li > a.active) > li.active > a:not(.active):visited {
+	background: var(--ex-elev-2) !important;
+	background-image: none !important;
+	color: var(--ex-muted) !important;
+	border: 1px solid var(--ex-border) !important;
+	border-bottom-color: var(--ex-border) !important;
 }
 html.exunity-theme .nav-pills > li.active > a,
 html.exunity-theme .nav-pills .nav-link.active {
