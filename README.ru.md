@@ -1,5 +1,5 @@
 [English](README.md) · [Русский](README.ru.md)
-
+![eXTools](/exlogo.png)
 # eXTools (**eXtended Tools for FreePBX by eXUnity LAB**)
 
 Открытый мультифункциональный модуль для [FreePBX 17](https://www.freepbx.org/) от [eXUnity LAB](https://exunity.uz). Расширяет возможности АТС до уровня средних корпоративных решений, не затрагивая код ядра, оригинального фреймворка и других модулей. Установка данного модуля не нарушает целостность инсталляции FreePBX и не конфликтует с её последующими обновлениями.
