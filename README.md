@@ -9,7 +9,7 @@ Repository: https://github.com/ibuben/freepbx-extools
 
 ## Features
 
-- Bulk extension operations: create by range, bulk-edit selected extension parameters (including bulk password changes)
+- Bulk extension operations: create by range or by pasted list (one per line), bulk-edit selected extension parameters (including bulk password changes)
 - **Telegram** — incoming-call alerts through your Telegram bot. A separate Chat ID can be attached to each extension.
 - **Phone autoprovisioning** — HTTP provisioning, used together with DHCP Option 66 (configure that on your DHCP server). Supports Yealink, Grandstream, Fanvil, and MicroSIP* (* requires a special MicroSIP build that can fetch settings).
 - **Phonebook** — Contact Manager groups and PBX extensions in the phone directory.

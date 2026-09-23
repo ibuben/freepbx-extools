@@ -6,12 +6,28 @@ $(function () {
 		$form.find('#secret_pattern, #be_secret_pattern').toggle(mode === 'pattern');
 	}).trigger('change');
 
+	function bulkCreateMode() {
+		return $('#exunity-bulk-form input[name=create_mode]:checked').val() || 'range';
+	}
+
+	function syncBulkCreateMode() {
+		var mode = bulkCreateMode();
+		$('#exunity-bulk-range').toggle(mode === 'range');
+		$('#exunity-bulk-list').toggle(mode === 'list');
+		$('#range_from, #range_to').prop('required', mode === 'range');
+		$('#bulk_create_extens').prop('required', mode === 'list');
+	}
+
+	$('#exunity-bulk-form input[name=create_mode]').on('change', syncBulkCreateMode);
+	syncBulkCreateMode();
+
 	function bulkPayload() {
 		var data = $('#exunity-bulk-form').serializeArray();
 		var out = { module: 'exunity' };
 		data.forEach(function (f) { out[f.name] = f.value; });
-		out.skip_existing = $('input[name=skip_existing]').is(':checked') ? 1 : 0;
-		out.voicemail = $('input[name=voicemail]').is(':checked') ? 1 : 0;
+		out.create_mode = bulkCreateMode();
+		out.skip_existing = $('#exunity-bulk-form input[name=skip_existing]').is(':checked') ? 1 : 0;
+		out.voicemail = $('#exunity-bulk-form input[name=voicemail]').is(':checked') ? 1 : 0;
 		return out;
 	}
 
@@ -38,7 +54,7 @@ $(function () {
 		$.post('ajax.php', payload, renderBulk, 'json');
 	});
 	$('#exunity-bulk-create').on('click', function () {
-		if (!confirm('Create this range of extensions?')) {
+		if (!confirm('Create these extensions?')) {
 			return;
 		}
 		var payload = bulkPayload();

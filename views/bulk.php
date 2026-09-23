@@ -8,10 +8,40 @@
 						<div class="col-md-12">
 							<div class="row">
 								<div class="form-group">
+									<div class="col-md-3"><label class="control-label"><?php echo _('Create by') ?></label></div>
+									<div class="col-md-9">
+										<label class="radio-inline"><input type="radio" name="create_mode" value="range" checked> <?php echo _('Range') ?></label>
+										<label class="radio-inline"><input type="radio" name="create_mode" value="list"> <?php echo _('List') ?></label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="element-container" id="exunity-bulk-range">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="row">
+								<div class="form-group">
 									<div class="col-md-3"><label class="control-label"><?php echo _('Range') ?></label></div>
-									<div class="col-md-4"><input type="number" class="form-control" name="range_from" id="range_from" placeholder="100" required></div>
+									<div class="col-md-4"><input type="number" class="form-control" name="range_from" id="range_from" placeholder="100"></div>
 									<div class="col-md-1 text-center">—</div>
-									<div class="col-md-4"><input type="number" class="form-control" name="range_to" id="range_to" placeholder="120" required></div>
+									<div class="col-md-4"><input type="number" class="form-control" name="range_to" id="range_to" placeholder="120"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="element-container" id="exunity-bulk-list" style="display:none">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="row">
+								<div class="form-group">
+									<div class="col-md-3"><label class="control-label" for="bulk_create_extens"><?php echo _('Extensions') ?></label></div>
+									<div class="col-md-9">
+										<textarea id="bulk_create_extens" class="form-control" name="extensions" rows="8" placeholder="<?php echo _('One extension per line') ?>"></textarea>
+										<span class="help-block"><?php echo _('Paste a column of numbers, or separate with commas / semicolons. Duplicates are ignored.') ?></span>
+									</div>
 								</div>
 							</div>
 						</div>
