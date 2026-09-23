@@ -1,5 +1,9 @@
 # Changelog
 
+## 17.0.12
+
+- Bulk Extensions: create by pasted list (one number per line / column), in addition to range
+
 ## 17.0.11
 
 - Stereo and MP3 conversion after hangup actually runs (MixMonitor post-process)

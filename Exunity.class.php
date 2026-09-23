@@ -1403,32 +1403,30 @@ class Exunity extends FreePBX_Helpers implements BMO
 
 	public function previewBulk(array $data): array
 	{
-		[$from, $to, $errors] = $this->parseRange($data);
+		[$exts, $errors, $meta] = $this->resolveBulkCreateExtensions($data);
 		if ($errors) {
 			return ['status' => false, 'message' => implode(' ', $errors)];
 		}
 		$existing = [];
 		$create = [];
-		for ($ext = $from; $ext <= $to; $ext++) {
-			if ($this->FreePBX->Core->getUser((string) $ext)) {
-				$existing[] = (string) $ext;
+		foreach ($exts as $extension) {
+			if ($this->FreePBX->Core->getUser($extension)) {
+				$existing[] = $extension;
 			} else {
-				$create[] = (string) $ext;
+				$create[] = $extension;
 			}
 		}
-		return [
+		return array_merge([
 			'status' => true,
-			'from' => $from,
-			'to' => $to,
 			'create' => $create,
 			'existing' => $existing,
 			'count' => count($create),
-		];
+		], $meta);
 	}
 
 	public function createBulk(array $data): array
 	{
-		[$from, $to, $errors] = $this->parseRange($data);
+		[$exts, $errors] = $this->resolveBulkCreateExtensions($data);
 		if ($errors) {
 			return ['status' => false, 'message' => implode(' ', $errors), 'results' => []];
 		}
@@ -1443,8 +1441,7 @@ class Exunity extends FreePBX_Helpers implements BMO
 		$ok = 0;
 		$skip = 0;
 		$fail = 0;
-		for ($ext = $from; $ext <= $to; $ext++) {
-			$extension = (string) $ext;
+		foreach ($exts as $extension) {
 			if ($this->FreePBX->Core->getUser($extension)) {
 				if ($skipExisting) {
 					$results[] = ['ext' => $extension, 'status' => 'skipped', 'message' => _('Already exists')];
@@ -1492,6 +1489,29 @@ class Exunity extends FreePBX_Helpers implements BMO
 			'failed' => $fail,
 			'results' => $results,
 		];
+	}
+
+	/**
+	 * Resolve extension numbers for bulk create from either a numeric range or a pasted list.
+	 *
+	 * @return array{0: list<string>, 1: list<string>, 2: array<string, mixed>}
+	 */
+	private function resolveBulkCreateExtensions(array $data): array
+	{
+		$mode = ($data['create_mode'] ?? 'range') === 'list' ? 'list' : 'range';
+		if ($mode === 'list') {
+			[$list, $errors] = $this->parseExtensionList($data);
+			return [$list, $errors, ['mode' => 'list']];
+		}
+		[$from, $to, $errors] = $this->parseRange($data);
+		if ($errors) {
+			return [[], $errors, ['mode' => 'range', 'from' => $from, 'to' => $to]];
+		}
+		$list = [];
+		for ($ext = $from; $ext <= $to; $ext++) {
+			$list[] = (string) $ext;
+		}
+		return [$list, [], ['mode' => 'range', 'from' => $from, 'to' => $to]];
 	}
 
 	private function parseRange(array $data): array
@@ -1610,7 +1630,7 @@ class Exunity extends FreePBX_Helpers implements BMO
 			$errors[] = _('Select at least one extension');
 		}
 		if (count($list) > 500) {
-			$errors[] = _('Cannot edit more than 500 extensions at once');
+			$errors[] = _('Cannot process more than 500 extensions at once');
 		}
 		return [$list, $errors];
 	}
